@@ -13,4 +13,3 @@ export { default as Stacked } from './Stacked';
 export { default as Pie } from './Pie';
 export { default as ChartsHeader } from '../ChartsHeader';
 export { default as Header } from '../Header';
-
