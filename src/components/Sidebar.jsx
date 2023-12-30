@@ -4,11 +4,11 @@ import { SiShopware } from 'react-icons/si';
 import { MdOutlineCancel } from 'react-icons/md';
 import { TooltipComponen, TooltipComponent } from '@syncfusion/ej2-react-popups';
 
-import { links} from '../data/dummy';
-
+import { links } from '../data/dummy';
+import { useStateContext } from '../ContextProvider';
 
 const Sidebar = () => {
-  const activeMenu = true;
+  const { activeMenu, setActiveMenu } = useStateContext();
 
   const activeLink = 'flex items-center gap-5 \
   pl-4 pt-3 pb-2.5 rounded-lg text-white \
@@ -29,7 +29,7 @@ const Sidebar = () => {
           <div className='flex justify-between
             items-center'>
 
-            <Link to="/" onClick={() => {}}
+            <Link to="/" onClick={() => setActiveMenu(false)}
               className='items-center gap-3 ml-3
               mt-4 flex text-x1 font-extrabold
               tracking-tight dark:text-white
@@ -38,17 +38,21 @@ const Sidebar = () => {
             </Link>
 
             <TooltipComponent content="Menu"
-              position='BottomCenter'>
-                <button type='button'
-                  onClick={() => {}}>
-                  <MdOutlineCancel className='text-2xl
-                  text-slate-900 dark:text-white
-                  hover:text-red-500
-                  cursor-pointer' />
-                </button>
+            position='BottomCenter'>
+              <button type='button'
+                onClick={() => setActiveMenu(
+                (prevActiveMenu) =>
+                !activeMenu)}>
+                      
+                <MdOutlineCancel className='text-2xl
+                text-slate-900 dark:text-white
+                hover:text-red-500
+                cursor-pointer' />
+                  
+              </button>
             </TooltipComponent>
           </div>
-
+          
             <div className='mt-10'>
               {links.map((item) => (
                 <div key={item.title}>

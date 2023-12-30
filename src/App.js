@@ -9,6 +9,7 @@ import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ThemeSettings from './components/ThemeSettings';
+import { useStateContext } from './ContextProvider';
 
 import {Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers,
 Kanban, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor, Line } from './pages/Charts';
@@ -17,7 +18,7 @@ import { Side } from '@syncfusion/ej2/svg-base';
 import NavBar from './components/Navbar';
 
 const App = () => {
-    const activeMenu = true;
+    const {activeMenu} = useStateContext();
   return (
     <div>
         <BrowserRouter>
