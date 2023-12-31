@@ -8,7 +8,13 @@ import { links } from '../data/dummy';
 import { useStateContext } from '../ContextProvider';
 
 const Sidebar = () => {
-  const { activeMenu, setActiveMenu } = useStateContext();
+  const { activeMenu, setActiveMenu, screenSize } = useStateContext();
+
+  const handleCloseSideBar = () => {
+    if(activeMenu && screenSize < 900) {
+      setActiveMenu(false)
+    }
+  }
 
   const activeLink = 'flex items-center gap-5 \
   pl-4 pt-3 pb-2.5 rounded-lg text-white \
@@ -21,64 +27,77 @@ const Sidebar = () => {
   
   return (
 
-    <div className="ml-3 h-screen
+    <div 
+      className="ml-3 h-screen
       md:overflow-hidden
       overflow-auto
       md:hover:overflow-auto pb-10">
-        {activeMenu && (<>
-          <div className='flex justify-between
-            items-center'>
+      {activeMenu && (<>
+      <div 
+        className='flex justify-between
+        items-center'>
 
-            <Link to="/" onClick={() => setActiveMenu(false)}
-              className='items-center gap-3 ml-3
-              mt-4 flex text-x1 font-extrabold
-              tracking-tight dark:text-white
-              text-slate-900'>
-              <SiShopware /> <span>Shoppy</span>
-            </Link>
+        <Link 
+          to="/" 
+          onClick={handleCloseSideBar}
+          className='items-center gap-3 ml-3
+          mt-4 flex text-x1 font-extrabold
+          tracking-tight dark:text-white
+          text-slate-900'>
+          <SiShopware />
+          <span>Shoppy</span>
+        </Link>
 
-            <TooltipComponent content="Menu"
-            position='BottomCenter'>
-              <button type='button'
-                onClick={() => setActiveMenu(
-                (prevActiveMenu) =>
-                !activeMenu)}>
-                      
-                <MdOutlineCancel className='text-2xl
-                text-slate-900 dark:text-white
-                hover:text-red-500
-                cursor-pointer' />
+        <TooltipComponent 
+          content="Menu"
+          position='BottomCenter'>
+          <button 
+            type='button'
+            onClick={() => 
+            setActiveMenu(
+            (prevActiveMenu) =>
+            !activeMenu)}>
                   
-              </button>
-            </TooltipComponent>
-          </div>
-          
-            <div className='mt-10'>
-              {links.map((item) => (
-                <div key={item.title}>
-                  <p className='text-gray-400 m-3'>
-                    {item.title}
-                  </p>
-                  {item.links.map((link) => (
-                    <NavLink
-                      to={`/${link.name}`}
-                      key={link.name}
-                      onClick={() => {}}
-                      className={({ isActive }) => 
-                      isActive ? activeLink : normalLink}
-                    >
-                      {link.icon}
-                      <span className='capitalize'>
-                        {link.name}
-                      </span>
-                    
-                    </NavLink>
+            <MdOutlineCancel 
+              className='text-2xl
+              text-slate-900 dark:text-white
+              hover:text-red-500
+              cursor-pointer' />
+              
+          </button>
+        </TooltipComponent>
+      </div>
+      
+        <div 
+          className='mt-10'>
+          {links.map((item) => (
+            <div 
+              key={item.title}>
+              <p 
+                className='text-gray-400 m-3'>
+                {item.title}
+              </p>
+              {item.links.map((link) => (
+                <NavLink
+                  to={`/${link.name}`}
+                  key={link.name}
+                  onClick={handleCloseSideBar}
+                  className={({ isActive }) => 
+                  isActive ? activeLink : normalLink}
+                >
+                  {link.icon}
+                  <span 
+                    className='capitalize'>
+                    {link.name}
+                  </span>
+                
+                </NavLink>
 
-                  ))}
-                </div>
               ))}
             </div>
-          </>)}
+          ))}
+        </div>
+      </>)}
     </div>
   )
 }
