@@ -18,7 +18,7 @@ import { Side } from '@syncfusion/ej2/svg-base';
 import NavBar from './components/Navbar';
 
 const App = () => {
-    const {activeMenu} = useStateContext();
+    const {activeMenu, themeSettings, setThemeSettings, currentColor} = useStateContext();
   return (
     <div>
         <BrowserRouter>
@@ -30,7 +30,8 @@ const App = () => {
                         hover:drop-shadow-x1
                         hover:bg-light-gray
                         text-white'
-                        style={{ background: 'blue',
+                        onClick={() => setThemeSettings(true)}
+                        style={{ background: currentColor,
                         borderRadius: '50%' }}>
                         <FiSettings />
                     </button>
@@ -61,6 +62,7 @@ const App = () => {
                 </div>    
 
             <div>
+                {themeSettings && <ThemeSettings />}
                 <Routes>
                     <Route path='/' element={<Ecommerce />} />
                     <Route path='/ecommerce' element={<Ecommerce />} />
