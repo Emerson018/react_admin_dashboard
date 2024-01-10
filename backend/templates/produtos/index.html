@@ -1,0 +1,31 @@
+{% load static %}
+
+{% block content %}
+    <h1>Produtos</h1>
+    <a href="#">Novo Produto</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Descrição</th>
+                <th>Imagem</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
+                <tr>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.preco }}</td>
+                    <td>{{ produto.descricao }}</td>
+                    <td><img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" width="100"></td>
+                    <td><a href="{% url 'produtos:update' produto.id %}">Editar</a></td>
+                    <td><a href="{% url 'produtos:delete' produto.id %}">Excluir</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+```
