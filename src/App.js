@@ -12,7 +12,7 @@ import ThemeSettings from './components/ThemeSettings';
 import { useStateContext } from './ContextProvider';
 
 import {Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers,
-Kanban, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor, Line } from './pages/Charts';
+Kanban, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor, Line, Testes } from './pages/Charts';
 import './App.css'
 import { Side } from '@syncfusion/ej2/svg-base';
 import NavBar from './components/Navbar';
@@ -72,6 +72,7 @@ const App = () => {
                     <Route path='/orders' element={<Orders />} />
                     <Route path='/employees' element={<Employees />} />
                     <Route path='/customers' element={<Customers />} />
+                    <Route path='/testes' element={<Testes />} />
 
                     <Route path='/kanban' element={<Kanban />} />
                     <Route path='/editor' element={<Editor />} />
@@ -88,6 +89,7 @@ const App = () => {
                     <Route path='/stacked' element={<Stacked />} />
                     
                 </Routes>
+                    
             </div>
         </div>
         </div>
@@ -96,4 +98,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;

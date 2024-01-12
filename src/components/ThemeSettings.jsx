@@ -17,7 +17,7 @@ const ThemeSettings = () => {
       dark:text-gray-200 bg-white
       dark:[#484B52] w-400'>
         <div className='flex justify-between
-        items-center p-4 ml-4'>
+          items-center p-4 ml-4'>
           <p className='font-semibold
           text-x1'>Settings</p>
           <button
