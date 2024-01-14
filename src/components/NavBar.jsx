@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
-import {  FiShoppingCart } from 'react-icons/fi';
-import { BsChatLeft } from 'react-icons/bs';
+import {  FiAperture, FiShoppingCart } from 'react-icons/fi';
+import { BsChat, BsChatLeft, BsFillChatDotsFill } from 'react-icons/bs';
 import { RiNotification3Line } from 'react-icons/ri';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
@@ -24,14 +24,14 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
         onClick={customFunc}
         style={{ color }}
         className='relative text-x1 rounded-full
-        p-3 hover:bg-light-gray'
+        p-4 hover:bg-light-gray'
       >
           <span
             style={{ background: dotColor }}
             className='absolute inline-flex
-            rounder-full h-2 w-2 right-2 top-2'
+            rounder-full h-2 w-2 right-2 top-1'
           />
-          {icon}
+          {React.cloneElement(icon, { style: { fontSize: '20px' } })} {/* Ajuste o valor de fontSize conforme necessário */}
       </button>  
   </TooltipComponent>
 )
@@ -85,7 +85,7 @@ const Navbar = () => {
           dotColor='#03C9D7'
           customFunc={() => handleClick('chat')}
           color={currentColor} 
-          icon={<FiShoppingCart />} 
+          icon={<BsChat />} 
         />
 
         <NavButton 

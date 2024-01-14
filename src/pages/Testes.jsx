@@ -14,7 +14,7 @@ import {
   Filter,
 } from '@syncfusion/ej2-react-grids';
 
-import { CustomGrid2, customerGridImage2 } from '../data/dummy';
+import { CustomGrid2 } from '../data/dummy';
 import Header from '../components/Header';
 
 const Testes = () => {

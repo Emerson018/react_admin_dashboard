@@ -72,7 +72,6 @@ const App = () => {
                     <Route path='/orders' element={<Orders />} />
                     <Route path='/employees' element={<Employees />} />
                     <Route path='/customers' element={<Customers />} />
-                    <Route path='/testes' element={<Testes />} />
 
                     <Route path='/kanban' element={<Kanban />} />
                     <Route path='/editor' element={<Editor />} />
@@ -87,6 +86,7 @@ const App = () => {
                     <Route path='/color-mapping' element={<ColorMapping />} />
                     <Route path='/pyramid' element={<Pyramid />} />
                     <Route path='/stacked' element={<Stacked />} />
+                    <Route path='/testes' element={<Testes />} />
                     
                 </Routes>
                     
