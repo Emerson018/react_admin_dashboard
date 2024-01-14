@@ -134,6 +134,17 @@ const customerGridImage = (props) => (
   </div>
 );
 
+const customerGridImage2 = (props) => (
+  <div className="image flex gap-4">
+    <img
+      className="rounded-full w-10 h-10"
+      src={props.foto}
+      alt="Imagem do Produto"
+    />
+  </div>
+);
+
+
 const customerGridStatus = (props) => (
   <div className="flex gap-2 justify-center items-center text-gray-700 capitalize">
     <p style={{ background: props.StatusBg }} className="rounded-full h-3 w-3" />
@@ -431,6 +442,54 @@ export const customersGrid = [
     isPrimaryKey: true,
   },
 
+];
+
+export const CustomGrid2 = [
+  { type: 'checkbox', width: '50' },
+  { field: 'lm',
+    headerText: 'LM',
+    width: '150',
+    textAlign: 'Center',
+    isPrimaryKey: true, },
+    { field: 'titulo',
+    headerText: 'Título',
+    width: '150',
+    textAlign: 'Center',},
+    { field: 'preco',
+    headerText: 'Preço',
+    width: '150',
+    textAlign: 'Center',},
+    { field: 'link',
+    headerText: 'Link',
+    width: '150',
+    textAlign: 'Center',},
+    { field: 'avaliacoes',
+    headerText: 'Avaliações',
+    width: '150',
+    textAlign: 'Center',},
+    { field: 'media_avaliacoes',
+    headerText: 'Media Avaliações',
+    width: '150',
+    textAlign: 'Center',},
+    { field: 'data_produto',
+    headerText: 'Data',
+    width: '150',
+    textAlign: 'Center',},
+    { field: 'usuario',
+    headerText: 'Usuário',
+    width: '150',
+    textAlign: 'Center',},
+    { field: 'info_produto',
+    headerText: 'Info',
+    width: '150',
+    textAlign: 'Center',},
+    { field: 'foto',
+    headerText: 'Foto',
+    width: '150',
+    template: customerGridImage2,
+    textAlign: 'Center',},
+    
+    
 ];
 
 export const employeesGrid = [

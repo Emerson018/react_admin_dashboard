@@ -10,7 +10,7 @@ class Produto(models.Model):
     avaliacoes = models.IntegerField(null=False, blank=False)
     media_avaliacoes = models.FloatField(max_length=4, null=False, blank=False)
     data_produto = models.DateTimeField(default=datetime.now, blank=False)
-    foto = models.ImageField(blank=True)
+    foto = models.CharField(max_length=500, null=False, blank=False)
     info_produto = models.CharField(max_length=1000, null=False, blank=False)
 
     usuario = models.ForeignKey(
