@@ -9,7 +9,7 @@ class Produto(models.Model):
     link = models.CharField(max_length=250, null=False, blank=False)
     avaliacoes = models.IntegerField(null=False, blank=False)
     media_avaliacoes = models.FloatField(max_length=4, null=False, blank=False)
-    data_produto = models.DateTimeField(default=datetime.now, blank=False)
+    data_produto = models.DateField(auto_now_add=True, blank=False)
     foto = models.CharField(max_length=500, null=False, blank=False)
     info_produto = models.CharField(max_length=1000, null=False, blank=False)
 

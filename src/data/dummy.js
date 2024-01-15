@@ -332,8 +332,8 @@ export const ColorMappingPrimaryYAxis = {
 
 export const FinancialPrimaryXAxis = {
   valueType: 'DateTime',
-  minimum: new Date('2016, 12, 31'),
-  maximum: new Date('2017, 9, 30'),
+  minimum: new Date('2017, 1, 1'),
+  maximum: new Date('2017, 9, 1'),
   crosshairTooltip: { enable: true },
   majorGridLines: { width: 0 },
 };
@@ -5587,10 +5587,9 @@ export const financialChartData = [
   },
   {
     x: new Date('2017-01-02'),
-    open: 115.8,
-    high: 118.16,
+    open: 117.34,
+    high: 'preco[]',
     low: 114.76,
-    close: 117.91,
     volume: 103680760,
   },
   {

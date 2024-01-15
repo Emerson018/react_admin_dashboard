@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, HiloSeries, Tooltip, DateTime, Zoom, Logarithmic, Crosshair } from '@syncfusion/ej2-react-charts';
 
 import { financialChartData, FinancialPrimaryXAxis, FinancialPrimaryYAxis } from '../../data/dummy';
 import { useStateContext } from '../../ContextProvider';
 import { ChartsHeader } from '../../components/Charts';
+
+import axios from 'axios';
 
 const date1 = new Date('2017, 1, 1');
 
@@ -14,10 +16,28 @@ function filterValue(value) {
     return value.x, value.high, value.low;
   }
 }
-const returnValue = financialChartData.filter(filterValue);
 
 const Financial = () => {
   const { currentMode } = useStateContext();
+
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    // Chama a API do Django quando o componente é montado
+    axios
+      .get('http://127.0.0.1:8000/produtos/')
+      .then((response) => {
+        const filteredData = response.data.map(item => ({
+          x: new Date(item.data_produto),  // Suponha que 'data' seja a propriedade de data
+          low: item.preco,         // Suponha que 'preco' seja a propriedade de preço
+        }));
+        setData(filteredData);
+      })
+      .catch((error) => {
+        console.error('Erro ao obter dados da API:', error);
+      });
+  }, []);
+
+  const returnValue = financialChartData.filter(filterValue);
 
   return (
     <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
