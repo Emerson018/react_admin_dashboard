@@ -1,5 +1,5 @@
 from django.contrib import admin
-from produtos.models import Produto
+from produtos.models import Produto, Loja1, Loja2, Loja3
 
 class ProdutoAdmin(admin.ModelAdmin):
     list_display = ('lm', 'titulo', 'preco')
@@ -8,3 +8,6 @@ class ProdutoAdmin(admin.ModelAdmin):
     list_per_page = 10
 
 admin.site.register(Produto, ProdutoAdmin)
+admin.site.register(Loja1)
+admin.site.register(Loja2)
+admin.site.register(Loja3)

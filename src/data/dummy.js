@@ -3069,7 +3069,7 @@ export const scheduleData = [
 
 export const lineChartData = [
   [
-    { x: new Date(2005, 0, 1), y: 21 },
+    { x: new Date(2005, 0, 1), y: 25 },
     { x: new Date(2006, 0, 1), y: 24 },
     { x: new Date(2007, 0, 1), y: 36 },
     { x: new Date(2008, 0, 1), y: 38 },
@@ -3122,7 +3122,7 @@ export const lineCustomSeries = [
   { dataSource: lineChartData[0],
     xName: 'x',
     yName: 'y',
-    name: 'Germany',
+    name: 'Brasil',
     width: '2',
     marker: { visible: true, width: 10, height: 10 },
     type: 'Line' },
@@ -5889,6 +5889,7 @@ export const financialChartData = [
     volume: 27939544,
   },
 ];
+
 export const PyramidData = [
   { x: 'Sweet Treats', y: 120, text: '120 cal' },
   { x: 'Milk, Youghnut, Cheese', y: 435, text: '435 cal' },

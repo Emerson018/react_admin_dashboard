@@ -26,12 +26,13 @@ const Financial = () => {
     axios
       .get('http://127.0.0.1:8000/produtos/')
       .then((response) => {
-        const filteredData = response.data.map(item => ({
-          x: new Date(item.data_produto),  // Suponha que 'data' seja a propriedade de data
-          low: item.preco,         // Suponha que 'preco' seja a propriedade de preço
-        }));
-        setData(filteredData);
-      })
+        const newData = response.data.map(item => ({
+          
+          x: item.data_produto,
+          y: item.preco,
+      }));
+      setData(newData);
+  })
       .catch((error) => {
         console.error('Erro ao obter dados da API:', error);
       });
