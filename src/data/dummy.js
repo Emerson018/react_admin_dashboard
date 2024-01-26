@@ -21,7 +21,6 @@ import product4 from './product4.jpg';
 import product5 from './product5.jpg';
 import product6 from './product6.jpg';
 import product7 from './product7.jpg';
-import product8 from './product8.jpg';
 
 export const gridOrderImage = (props) => (
   <div>
@@ -135,7 +134,7 @@ export const areaPrimaryYAxis = {
   labelStyle: { color: 'gray' },
 
 };
-export const barPrimaryXAxis = {
+export const  barPrimaryXAxis = {
   valueType: 'Category',
   interval: 1,
   majorGridLines: { width: 0 },
@@ -190,7 +189,7 @@ export const areaCustomSeries = [
     dataSource: areaChartData[0],
     xName: 'x',
     yName: 'y',
-    name: 'USA',
+    name: 'Brasil',
     opacity: '0.8',
     type: 'SplineArea',
     width: '2',
@@ -200,7 +199,7 @@ export const areaCustomSeries = [
     dataSource: areaChartData[1],
     xName: 'x',
     yName: 'y',
-    name: 'France',
+    name: 'France', 
     opacity: '0.8',
     type: 'SplineArea',
     width: '2',
@@ -3116,33 +3115,6 @@ export const SparklineAreaData = [
   { x: 3, y: 8 },
   { x: 4, y: 5 },
   { x: 5, y: 10 },
-];
-
-export const lineCustomSeries = [
-  { dataSource: lineChartData[0],
-    xName: 'x',
-    yName: 'y',
-    name: 'Brasil',
-    width: '2',
-    marker: { visible: true, width: 10, height: 10 },
-    type: 'Line' },
-
-  { dataSource: lineChartData[1],
-    xName: 'x',
-    yName: 'y',
-    name: 'England',
-    width: '2',
-    marker: { visible: true, width: 10, height: 10 },
-    type: 'Line' },
-
-  { dataSource: lineChartData[2],
-    xName: 'x',
-    yName: 'y',
-    name: 'India',
-    width: '2',
-    marker: { visible: true, width: 10, height: 10 },
-    type: 'Line' },
-
 ];
 
 export const pieChartData = [
