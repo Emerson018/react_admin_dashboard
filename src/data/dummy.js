@@ -118,7 +118,7 @@ const customerGridStatus = (props) => (
 export const areaPrimaryXAxis = {
   valueType: 'DateTime',
   labelFormat: 'y',
-  majorGridLines: { width: 0 },
+  majorGridLines: { width: 0.8 },
   intervalType: 'Years',
   edgeLabelPlacement: 'Shift',
   labelStyle: { color: 'gray' },
@@ -127,8 +127,8 @@ export const areaPrimaryXAxis = {
 export const areaPrimaryYAxis = {
   labelFormat: '{value}%',
   lineStyle: { width: 0 },
-  maximum: 4,
-  interval: 1,
+  maximum: 100,
+  interval: 10,
   majorTickLines: { width: 0 },
   minorTickLines: { width: 0 },
   labelStyle: { color: 'gray' },
@@ -140,10 +140,12 @@ export const  barPrimaryXAxis = {
   majorGridLines: { width: 0 },
 };
 export const barPrimaryYAxis = {
-  majorGridLines: { width: 0 },
+  title: 'Revenue in Millions',
+  majorGridLines: { width: 1 },
   majorTickLines: { width: 0 },
   lineStyle: { width: 0 },
   labelStyle: { color: 'transparent' },
+  labelFormat: '{value}',
 };
 const areaChartData = [
   [
@@ -189,7 +191,7 @@ export const areaCustomSeries = [
     dataSource: areaChartData[0],
     xName: 'x',
     yName: 'y',
-    name: 'Brasil',
+    name: 'USA',
     opacity: '0.8',
     type: 'SplineArea',
     width: '2',
@@ -3115,6 +3117,33 @@ export const SparklineAreaData = [
   { x: 3, y: 8 },
   { x: 4, y: 5 },
   { x: 5, y: 10 },
+];
+
+export const lineCustomSeries = [
+  { dataSource: lineChartData[0],
+    xName: 'x',
+    yName: 'y',
+    name: 'Brasil',
+    width: '2',
+    marker: { visible: true, width: 10, height: 10 },
+    type: 'Line' },
+
+  { dataSource: lineChartData[1],
+    xName: 'x',
+    yName: 'y',
+    name: 'England',
+    width: '2',
+    marker: { visible: true, width: 10, height: 10 },
+    type: 'Line' },
+
+  { dataSource: lineChartData[2],
+    xName: 'x',
+    yName: 'y',
+    name: 'India',
+    width: '2',
+    marker: { visible: true, width: 10, height: 10 },
+    type: 'Line' },
+
 ];
 
 export const pieChartData = [

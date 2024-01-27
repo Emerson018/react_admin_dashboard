@@ -49,7 +49,7 @@ const LineChart = () => {
       <SeriesCollectionDirective>
         <SeriesDirective dataSource={chartData} xName='data' yName="porc_variacao_anual" type="Line" name='Loja 1' />
         <SeriesDirective dataSource={chartData2} xName='data' yName="porc_variacao_anual" type="Line" name='Loja 2' />
-        <SeriesDirective dataSource={chartData3} xName='data' yName="porc_variacao_anual" type="Line" name='Loja 3' />
+        <SeriesDirective dataSource={chartData3} xName='data' yName="porc_variacao_anual" type="Line" name='Loja 3'  />
       </SeriesCollectionDirective>
     </ChartComponent>
   );
