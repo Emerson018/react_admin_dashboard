@@ -19,6 +19,8 @@ import Header from '../components/Header';
 
 const Testes = () => {
   const [data, setData] = useState([]);
+  const [searchText, setSearchText] = useState('');
+
   useEffect(() => {
     // Chama a API do Django quando o componente é montado
     axios
@@ -31,8 +33,29 @@ const Testes = () => {
       });
   }, []);
 
+  const handleSearchTextChange = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  const handleSearchButtonClick = () => {
+  };
+
   return (
+    
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+    
+      <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-black rounded-3xl">
+      {/* Adicionando a caixa de texto e o botão acima da div */}
+      <div className="mb-4">
+        <input
+          type="text"
+          value={searchText}
+          onChange={handleSearchTextChange}
+          placeholder="Digite para pesquisar..."
+        />
+        <button onClick={handleSearchButtonClick}>Pesquisar</button>
+      </div>
+      </div>
       <Header category="Page" title="Testes" />
       <GridComponent
         dataSource={data}
