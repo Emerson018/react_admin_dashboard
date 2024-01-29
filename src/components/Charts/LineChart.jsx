@@ -33,8 +33,11 @@ const LineChart = () => {
     fetchData();  
   }, []);
 
+  const isDataReady = chartData.length > 0 && chartData2.length > 0 && chartData3.length > 0;
 
   return (
+    <>
+      {isDataReady && (
     <ChartComponent
       id="line-chart"
       height="420px"
@@ -52,6 +55,8 @@ const LineChart = () => {
         <SeriesDirective dataSource={chartData3} xName='data' yName="porc_variacao_anual" type="Line" name='Loja 3'  />
       </SeriesCollectionDirective>
     </ChartComponent>
+    )}
+    </>
   );
 };
 

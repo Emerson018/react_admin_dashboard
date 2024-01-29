@@ -10,7 +10,6 @@ import { useStateContext } from '../../ContextProvider';
 
 const Area = () => {
   const { currentMode } = useStateContext();
-  
   const [areaData, setAreaData] = useState([]);
   const [areaData2, setAreaData2] = useState([]);
   const [areaData3, setAreaData3] = useState([]);
@@ -50,7 +49,11 @@ const Area = () => {
     return mappedData;
   };
 
+  const isDataReady = areaData.length > 0 && areaData2.length > 0 && areaData3.length > 0;
+
   return (
+    <>
+      {isDataReady && (
     <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
       <ChartsHeader category="Area" title="Inflation" />
       <div className="w-full">
@@ -99,6 +102,8 @@ const Area = () => {
         </ChartComponent>
       </div>
     </div>
+    )}
+    </>
   );
 };
 

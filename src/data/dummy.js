@@ -202,7 +202,7 @@ export const ColorMappingPrimaryYAxis = {
 
 export const FinancialPrimaryXAxis = {
   valueType: 'DateTime',
-  minimum: new Date('2017, 1, 1'),
+  minimum: new Date('2019, 1, 1'),
   maximum: new Date('2025, 1, 1'),
   crosshairTooltip: { enable: true },
   majorGridLines: { width: 0 },

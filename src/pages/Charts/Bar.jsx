@@ -30,9 +30,11 @@ const Bar = () => {
     fetchData();  
   }, []);
 
-  // Modifique esta parte para utilizar os dados obtidos do Django
+  const isDataReady = barData.length > 0 && barData2.length > 0 && barData3.length > 0;
 
   return (
+    <>
+      {isDataReady && (
     <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
       <ChartsHeader category="Bar" title="Contagem de Medalhas Olímpicas - RIO" />
       <div className=" w-full">
@@ -55,6 +57,8 @@ const Bar = () => {
         </ChartComponent>
       </div>
     </div>
+    )}
+    </>
   );
 };
 
