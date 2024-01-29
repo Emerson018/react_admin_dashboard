@@ -140,145 +140,14 @@ export const  barPrimaryXAxis = {
   majorGridLines: { width: 0 },
 };
 export const barPrimaryYAxis = {
-  title: 'Revenue in Millions',
+  title: 'Produtos Vendidos / Loja',
   majorGridLines: { width: 1 },
   majorTickLines: { width: 0 },
   lineStyle: { width: 0 },
   labelStyle: { color: 'transparent' },
   labelFormat: '{value}',
 };
-const areaChartData = [
-  [
-    { x: new Date(2002, 0, 1), y: 2.2 },
-    { x: new Date(2003, 0, 1), y: 3.4 },
-    { x: new Date(2004, 0, 1), y: 2.8 },
-    { x: new Date(2005, 0, 1), y: 1.6 },
-    { x: new Date(2006, 0, 1), y: 2.3 },
-    { x: new Date(2007, 0, 1), y: 2.5 },
-    { x: new Date(2008, 0, 1), y: 2.9 },
-    { x: new Date(2009, 0, 1), y: 3.8 },
-    { x: new Date(2010, 0, 1), y: 1.4 },
-    { x: new Date(2011, 0, 1), y: 3.1 },
-  ],
-  [
-    { x: new Date(2002, 0, 1), y: 2 },
-    { x: new Date(2003, 0, 1), y: 1.7 },
-    { x: new Date(2004, 0, 1), y: 1.8 },
-    { x: new Date(2005, 0, 1), y: 2.1 },
-    { x: new Date(2006, 0, 1), y: 2.3 },
-    { x: new Date(2007, 0, 1), y: 1.7 },
-    { x: new Date(2008, 0, 1), y: 1.5 },
-    { x: new Date(2009, 0, 1), y: 2.8 },
-    { x: new Date(2010, 0, 1), y: 1.5 },
-    { x: new Date(2011, 0, 1), y: 2.3 },
-  ],
-  [
-    { x: new Date(2002, 0, 1), y: 0.8 },
-    { x: new Date(2003, 0, 1), y: 1.3 },
-    { x: new Date(2004, 0, 1), y: 1.1 },
-    { x: new Date(2005, 0, 1), y: 1.6 },
-    { x: new Date(2006, 0, 1), y: 2 },
-    { x: new Date(2007, 0, 1), y: 1.7 },
-    { x: new Date(2008, 0, 1), y: 2.3 },
-    { x: new Date(2009, 0, 1), y: 2.7 },
-    { x: new Date(2010, 0, 1), y: 1.1 },
-    { x: new Date(2011, 0, 1), y: 2.3 },
-  ],
-];
 
-export const areaCustomSeries = [
-  {
-    dataSource: areaChartData[0],
-    xName: 'x',
-    yName: 'y',
-    name: 'USA',
-    opacity: '0.8',
-    type: 'SplineArea',
-    width: '2',
-
-  },
-  {
-    dataSource: areaChartData[1],
-    xName: 'x',
-    yName: 'y',
-    name: 'France', 
-    opacity: '0.8',
-    type: 'SplineArea',
-    width: '2',
-  },
-  {
-    dataSource: areaChartData[2],
-    xName: 'x',
-    yName: 'y',
-    name: 'Germany',
-    opacity: '0.8',
-    type: 'SplineArea',
-    width: '2',
-  },
-];
-
-export const barChartData = [
-  [
-    { x: 'USA', y: 46 },
-    { x: 'GBR', y: 27 },
-    { x: 'CHN', y: 26 },
-  ],
-  [
-    { x: 'USA', y: 37 },
-    { x: 'GBR', y: 23 },
-    { x: 'CHN', y: 18 },
-  ],
-  [
-    { x: 'USA', y: 38 },
-    { x: 'GBR', y: 17 },
-    { x: 'CHN', y: 26 },
-  ],
-];
-
-export const barCustomSeries = [
-  {
-    dataSource: barChartData[0],
-    xName: 'x',
-    yName: 'y',
-    name: 'Gold',
-    type: 'Column',
-    marker: {
-      dataLabel: {
-        visible: true,
-        position: 'Top',
-        font: { fontWeight: '600', color: '#ffffff' },
-      },
-    },
-  },
-  {
-    dataSource: barChartData[1],
-    xName: 'x',
-    yName: 'y',
-    name: 'Silver',
-    type: 'Column',
-    marker: {
-      dataLabel: {
-        visible: true,
-        position: 'Top',
-        font: { fontWeight: '600', color: '#ffffff' },
-      },
-    },
-  },
-  {
-    dataSource: barChartData[2],
-    xName: 'x',
-    yName: 'y',
-    name: 'Bronze',
-    type: 'Column',
-    marker: {
-      dataLabel: {
-        visible: true,
-        position: 'Top',
-        font: { fontWeight: '600', color: '#ffffff' },
-      },
-    },
-  },
-];
 export const colorMappingData = [
   [
     { x: 'Jan', y: 6.96 },
@@ -334,16 +203,16 @@ export const ColorMappingPrimaryYAxis = {
 export const FinancialPrimaryXAxis = {
   valueType: 'DateTime',
   minimum: new Date('2017, 1, 1'),
-  maximum: new Date('2017, 9, 1'),
+  maximum: new Date('2025, 1, 1'),
   crosshairTooltip: { enable: true },
   majorGridLines: { width: 0 },
 };
 
 export const FinancialPrimaryYAxis = {
-  title: 'Price',
-  minimum: 100,
-  maximum: 180,
-  interval: 20,
+  title: 'Vendas máx. e min. Loja',
+  minimum: 0,
+  maximum: 7000,
+  interval: 500,
   lineStyle: { width: 0 },
   majorTickLines: { width: 0 },
 };

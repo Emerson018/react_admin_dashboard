@@ -1,48 +1,56 @@
 import React, { useEffect, useState } from 'react';
-import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, HiloSeries, Tooltip, DateTime, Zoom, Logarithmic, Crosshair } from '@syncfusion/ej2-react-charts';
+import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, HiloSeries, Tooltip, DateTime, Zoom, Logarithmic, Crosshair, Legend } from '@syncfusion/ej2-react-charts';
 
-import { financialChartData, FinancialPrimaryXAxis, FinancialPrimaryYAxis } from '../../data/dummy';
+import { FinancialPrimaryXAxis, FinancialPrimaryYAxis } from '../../data/dummy';
 import { useStateContext } from '../../ContextProvider';
 import { ChartsHeader } from '../../components/Charts';
 
 import axios from 'axios';
 
-const date1 = new Date('2017, 1, 1');
+const mapData = (data) => ({
+  data: new Date(data.data), // Ajuste conforme o formato de data retornado pelo Django
+  menor_venda: data.menor_venda,
+  maior_venda: data.maior_venda,
+});
 
 // eslint-disable-next-line consistent-return
-function filterValue(value) {
-  if (value.x >= date1) {
-    // eslint-disable-next-line no-sequences
-    return value.x, value.high, value.low;
-  }
-}
+
 
 const Financial = () => {
   const { currentMode } = useStateContext();
 
-  const [data, setData] = useState([]);
+  const [financialData, setFinancialData] = useState([]);
+  const [financialData2, setFinancialData2] = useState([]);
+  const [financialData3, setFinancialData3] = useState([]);
+
   useEffect(() => {
-    // Chama a API do Django quando o componente é montado
-    axios
-      .get('http://127.0.0.1:8000/produtos/')
-      .then((response) => {
-        const newData = response.data.map(item => ({
-          
-          x: item.data_produto,
-          y: item.preco,
-      }));
-      setData(newData);
-  })
-      .catch((error) => {
-        console.error('Erro ao obter dados da API:', error);
-      });
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/loja1/');
+        const response2 = await axios.get('http://127.0.0.1:8000/loja2/');
+        const response3 = await axios.get('http://127.0.0.1:8000/loja3/');
+        
+
+
+        // Substitua 'sua-api-endpoint-aqui' pelo endpoint correto da sua API
+        setFinancialData(response.data);
+        setFinancialData2(response2.data);
+        setFinancialData3(response3.data);
+
+        console.log('Dados do banco de dados:', response.data);
+      } catch (error) {
+        console.error('Erro ao obter dados do banco de dados:', error);
+      }
+    };
+
+    fetchData();  
   }, []);
 
-  const returnValue = financialChartData.filter(filterValue);
+
 
   return (
     <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
-      <ChartsHeader category="Financial" title="AAPLE Historical" />
+      <ChartsHeader category="Financial" title="Financial graph" />
       <div className="w-full">
         <ChartComponent
           id="charts"
@@ -53,16 +61,34 @@ const Financial = () => {
           crosshair={{ enable: true, lineType: 'Vertical', line: { width: 0 } }}
           background={currentMode === 'Dark' ? '#33373E' : '#fff'}
         >
-          <Inject services={[HiloSeries, Tooltip, DateTime, Logarithmic, Crosshair, Zoom]} />
+          <Inject services={[HiloSeries, Tooltip, DateTime, Logarithmic, Crosshair, Zoom, Legend]} />
           <SeriesCollectionDirective>
             <SeriesDirective
-              dataSource={returnValue}
-              xName="x"
-              yName="low"
-              name="Apple Inc"
+              dataSource={financialData}
+              xName="data"
+              yName="menor_venda"
+              name="loja1"
               type="Hilo"
-              low="low"
-              high="high"
+              low="menor_venda"
+              high="maior_venda"
+            />
+             <SeriesDirective
+              dataSource={financialData2}
+              xName="data"
+              yName="menor_venda"
+              name="loja2"
+              type="Hilo"
+              low="menor_venda"
+              high="maior_venda"
+            />
+             <SeriesDirective
+              dataSource={financialData3}
+              xName="data"
+              yName="menor_venda"
+              name="loja3"
+              type="Hilo"
+              low="menor_venda"
+              high="maior_venda"
             />
           </SeriesCollectionDirective>
         </ChartComponent>

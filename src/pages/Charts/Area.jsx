@@ -10,6 +10,7 @@ import { useStateContext } from '../../ContextProvider';
 
 const Area = () => {
   const { currentMode } = useStateContext();
+  
   const [areaData, setAreaData] = useState([]);
   const [areaData2, setAreaData2] = useState([]);
   const [areaData3, setAreaData3] = useState([]);
