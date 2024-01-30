@@ -2,9 +2,9 @@ import React from 'react'
 
 import { MdOutlineCancel } from 'react-icons/md';
 import { BsCheck } from 'react-icons/bs';
-import { Tooltip, TooltipComponent } from '@syncfusion/ej2-react-popups';
+import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { themeColors } from '../data/dummy';
-import { useState, useStateContext } from '../ContextProvider';
+import { useStateContext } from '../ContextProvider';
 
 const ThemeSettings = () => {
   const { setColor, setMode, currentMode,
@@ -60,8 +60,8 @@ const ThemeSettings = () => {
             name='theme'
             value='Dark'
             className='cursor-pointer'
-            onChange={currentMode === 'Dark'}
-            checked={true}
+            onChange={() => setMode('Dark')} // Corrigir esta linha
+            checked={currentMode === 'Dark'}
             />
             <label htmlFor='dark'
               className='ml-2 text-md
