@@ -1,5 +1,5 @@
 from django.contrib import admin
-from produtos.models import Produto, Loja1, Loja2, Loja3
+from produtos.models import Produto, Loja1, Loja2, Loja3, Testes
 
 class ProdutoAdmin(admin.ModelAdmin):
     list_display = ('lm', 'titulo', 'preco')
@@ -11,3 +11,4 @@ admin.site.register(Produto, ProdutoAdmin)
 admin.site.register(Loja1)
 admin.site.register(Loja2)
 admin.site.register(Loja3)
+admin.site.register(Testes)

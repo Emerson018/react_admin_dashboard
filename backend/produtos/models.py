@@ -76,3 +76,7 @@ class Loja3(models.Model):
     menor_venda = models.FloatField(max_length=10, null=False, blank=False)
     tipo_produto = models.CharField(max_length=1, choices=TIPO_PRODUTO_CHOICES, null=False, blank=False)
     qtd_produtos = models.IntegerField(null=False, blank=False)
+
+class Testes(models.Model):
+    code = models.CharField(max_length=20, primary_key=True, null=False, blank=False)
+    titulo = models.CharField(max_length=130, null=False, blank=False)
