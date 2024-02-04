@@ -13,5 +13,5 @@ router.register(r'testes', TestesViewSet , basename='testes')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    path('', include('produtos.urls'))
+    path('', include('produtos.urls')),
 ]

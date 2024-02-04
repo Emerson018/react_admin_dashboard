@@ -37,6 +37,18 @@ const Testes = () => {
   };
 
   const handleSearchButtonClick = () => {
+    axios
+    .get('http://127.0.0.1:8000/salva_produto/', {
+      params: {
+        url: searchText
+      }
+    })
+    .then((response) => {
+      alert(response.data.message);
+    })
+    .catch((error) => {
+      console.error('Erro ao salvar produto:', error);
+    });
   };
 
   return (

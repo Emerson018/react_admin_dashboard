@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+
 from produtos.models import Produto, Loja1, Loja2, Loja3, Testes
 from produtos.serializer import ProdutoSerializer, Loja1Serializer, Loja2Serializer, Loja3Serializer, TestesSerializer
 
@@ -47,19 +50,26 @@ def get_title_and_code(url,title_element):
 
     return title, code 
 
+def salva_produto(request):
+    url = request.GET.get('url', '')
 
-def index(request):
-    url = 'https://www.leroymerlin.com.br/cabo-flexivel--2,5mm-100m-azul-750v-sil-fios_86839655?region=grande_sao_paulo&gad_source=1&gclid=Cj0KCQiAn-2tBhDVARIsAGmStVl7FODR9Z4jQUlbAZSUb7-hH7NH7xrXxNlMpc-e9gaYzW23Y6SyHoIaAshSEALw_wcB'
+    if not url:
+        return JsonResponse({'message': 'URL não fornecida'})
 
     html_element = requisition(url).find('h1', class_='product-title align-left color-text')
     if html_element:
         title, code = get_title_and_code(url, html_element)
+
+        existing_produto = get_object_or_404(Testes, code=code)
+        if existing_produto:
+            return JsonResponse({'message': 'Produto já existe no banco de dados'})
+
         produtos = Testes(
             code=code,
-            title=title
+            titulo=title
         )
-
         produtos.save()
-
-    return render(request, 'produtos/index.html')
+        return JsonResponse({'message': 'Produto salvo com sucesso'})
+    else:
+        return JsonResponse({'message': 'Falha ao obter dados da URL'})
 

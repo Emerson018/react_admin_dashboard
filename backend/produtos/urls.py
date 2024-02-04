@@ -1,6 +1,6 @@
 from django.urls import path
-from produtos.views import index
+from produtos.views import salva_produto
 
 urlpatterns = [
-    path('', index, name='index'),
+    path('salva_produto/', salva_produto, name='salva_produto'),
 ]
