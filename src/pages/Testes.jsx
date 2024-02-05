@@ -23,7 +23,7 @@ const Testes = () => {
     // Chama a API do Django quando o componente é montado
     
     axios
-      .get('http://127.0.0.1:8000/testes/')
+      .get('http://127.0.0.1:8000/produtos/')
       .then((response) => {
         setData(response.data);
       })
@@ -38,7 +38,7 @@ const Testes = () => {
 
   const handleSearchButtonClick = () => {
     axios
-    .get('http://127.0.0.1:8000/salva_produto/', {
+    .get('http://127.0.0.1:8000/save_product/', {
       params: {
         url: searchText
       }
@@ -50,6 +50,7 @@ const Testes = () => {
       console.error('Erro ao salvar produto:', error);
     });
   };
+
 
   return (
 
