@@ -60,16 +60,17 @@ def salva_produto(request):
     if html_element:
         title, code = get_title_and_code(url, html_element)
 
-        existing_produto = get_object_or_404(Testes, code=code)
-        if existing_produto:
+        try:
+            existing_produto = Testes.objects.get(code=code)
             return JsonResponse({'message': 'Produto já existe no banco de dados'})
-
-        produtos = Testes(
-            code=code,
-            titulo=title
-        )
-        produtos.save()
-        return JsonResponse({'message': 'Produto salvo com sucesso'})
+        except Testes.DoesNotExist:
+            
+            produtos = Testes(
+                code=code,
+                titulo=title
+            )
+            produtos.save()
+        
+            return JsonResponse({'message': 'Produto salvo com sucesso!'})
     else:
         return JsonResponse({'message': 'Falha ao obter dados da URL'})
-

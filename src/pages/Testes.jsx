@@ -23,7 +23,7 @@ const Testes = () => {
     // Chama a API do Django quando o componente é montado
     
     axios
-      .get('http://127.0.0.1:8000/produtos/')
+      .get('http://127.0.0.1:8000/testes/')
       .then((response) => {
         setData(response.data);
       })
