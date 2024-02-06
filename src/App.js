@@ -89,6 +89,7 @@ const App = () => {
                 </Routes>
                     
             </div>
+            <Footer />
         </div>
         </div>
         </BrowserRouter>
