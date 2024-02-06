@@ -60,7 +60,7 @@ const ThemeSettings = () => {
             name='theme'
             value='Dark'
             className='cursor-pointer'
-            onChange={() => setMode('Dark')} // Corrigir esta linha
+            onChange={setMode} // Corrigir esta linha
             checked={currentMode === 'Dark'}
             />
             <label htmlFor='dark'
