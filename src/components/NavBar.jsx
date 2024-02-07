@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import {  FiAperture, FiShoppingCart } from 'react-icons/fi';
 import { BsChat, BsChatLeft, BsFillChatDotsFill } from 'react-icons/bs';
@@ -41,6 +41,10 @@ const Navbar = () => {
   setIsClicked, handleClick, screenSize, setScreenSize,
   currentColor} = useStateContext();
 
+  const cartRef = useRef(null);
+  const chatRef = useRef(null);
+  const notificationRef = useRef(null);
+
   useEffect(() => {
     const handleResize = () => 
     setScreenSize(window.innerWidth);
@@ -58,6 +62,38 @@ const Navbar = () => {
     }
 
   }, [screenSize]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        cartRef.current &&
+        !cartRef.current.contains(event.target) &&
+        isClicked.cart
+      ) {
+        setIsClicked((prevState) => ({ ...prevState, cart: false }));
+      }
+      if (
+        chatRef.current &&
+        !chatRef.current.contains(event.target) &&
+        isClicked.chat
+      ) {
+        setIsClicked((prevState) => ({ ...prevState, chat: false }));
+      }
+      if (
+        notificationRef.current &&
+        !notificationRef.current.contains(event.target) &&
+        isClicked.notification
+      ) {
+        setIsClicked((prevState) => ({ ...prevState, notification: false }));
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isClicked, setIsClicked]);
 
   return (
     <div 
@@ -115,16 +151,28 @@ const Navbar = () => {
                 </span> {' '}
                 <span 
                   className='text-gray-400
-                  font-bold ml-1 text-14'> Emerson
+                  font-bold ml-1 text-14'> Sayrix
                 </span>
               </p>
           </div>
 
         </TooltipComponent>
 
-          {isClicked.cart  && <Cart />}
-          {isClicked.chat  && <Chat />}
-          {isClicked.notification  && <Notification />}
+          {isClicked.cart  && (
+          <div ref={cartRef}>
+            <Cart />
+          </div>
+        )}
+          {isClicked.chat  && (
+          <div ref={chatRef}>
+            <Chat />
+          </div>
+        )}
+          {isClicked.notification  && (
+          <div ref={notificationRef}>
+            <Notification />
+          </div>
+        )}
           {isClicked.userProfile  && <UserProfile />}
       </div>
 
@@ -132,4 +180,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default Navbar;

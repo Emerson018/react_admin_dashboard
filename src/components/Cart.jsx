@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MdOutlineCancel } from 'react-icons/md';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
@@ -7,11 +7,26 @@ import { cartData } from '../data/dummy';
 import Button from './Button';
 
 const Cart = () => {
-  const { currentColor } = useStateContext();
+  const { currentColor, setIsClicked } = useStateContext();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const cart = document.getElementById('cart');
+      if (cart && !cart.contains(event.target)) {
+        setIsClicked((prevState) => ({ ...prevState, cart: false }));
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [setIsClicked]);
 
   return (
-    <div className="bg-half-transparent w-full fixed nav-item top-0 right-0 ">
-      <div className="float-right h-screen  duration-1000 ease-in-out dark:text-gray-200 transition-all dark:bg-[#484B52] bg-white md:w-400 p-8">
+    <div id="cart" className="bg-half-transparent w-full fixed nav-item top-0 right-0">
+      <div className="float-right h-screen duration-1000 ease-in-out dark:text-gray-200 transition-all dark:bg-[#484B52] bg-white md:w-400 p-8">
         <div className="flex justify-between items-center">
           <p className="font-semibold text-lg">Shopping Cart</p>
           <Button
