@@ -16,9 +16,12 @@ import { CustomGrid2 } from '../data/dummy';
 import Header from '../components/Header';
 import { ChartsHeader } from '../components/Charts';
 
+import {useStateContext } from '../ContextProvider';
+
 const Testes = () => {
   const [data, setData] = useState([]);
   const [searchText, setSearchText] = useState('');
+  const { currentMode } = useStateContext();
 
   useEffect(() => {
     // Chama a API do Django quando o componente é montado
@@ -56,8 +59,8 @@ const Testes = () => {
   return (
 
     <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
-
-      <div className="m-4 md:m-10 mt-24 p-10 md:p-10 bg-white rounded-3xl">
+      <ChartsHeader category="Testes" />
+      <div className="mt-24 p-10 bg-white rounded-3xl text-xl mb-2 mt-3">
       {/* Adicionando a caixa de texto e o botão acima da div */}
       <div className="mb-4">
         <input
@@ -69,7 +72,7 @@ const Testes = () => {
         <button onClick={handleSearchButtonClick}>Pesquisar</button>
       </div>
       </div>
-      <ChartsHeader category="Testes" />
+      <ChartsHeader category="Testes"/>
       <GridComponent
         dataSource={data}
         allowPaging
@@ -79,6 +82,8 @@ const Testes = () => {
         width="auto"
         // Inclua o SearchSettings para habilitar a funcionalidade de pesquisa
         searchSettings={{ fields: ['Name'] }}
+        
+        
       >
         <ColumnsDirective>
           {CustomGrid2.map((item, index) => (
@@ -88,6 +93,7 @@ const Testes = () => {
               field={item.field}
               headerText={item.headerText}
               width={item.width}
+              
             />
           ))}
         </ColumnsDirective>

@@ -9,9 +9,12 @@ Tooltip } from '@syncfusion/ej2-react-charts';
 import { stackedCustomSeries, stackedPrimaryXAxis,
 stackedPrimaryYAxis } from '../../data/dummy';
 
+import {useStateContext } from '../../ContextProvider';
+
 const Stacked = ({width, height}) => {
 
   const [stackedData, setStackedData] = useState([]);
+  const { currentMode } = useStateContext();
 
 
   useEffect(() => {
@@ -41,6 +44,7 @@ const Stacked = ({width, height}) => {
           primaryYAxis={stackedPrimaryYAxis}
           chartArea={{ border: { width: 0 } }}
           tooltip={{ enable: true }}
+          
         >
           <Inject services={[StackingColumnSeries, Legend, Tooltip, Category]} />
           <SeriesCollectionDirective>
@@ -56,6 +60,7 @@ const Stacked = ({width, height}) => {
                   marker={series.marker}
                   width={2}
                   animation={{ enable: true }}
+                  
                 />
               )
             })}

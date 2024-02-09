@@ -11,10 +11,7 @@ import Header from '../components/Header';
 const Orders = () => {
   const editing = { allowDeleting: true, allowEditing: true };
   return (
-    <div className="bg-white
-    dark:text-gray-200
-    dark:bg-secondary-dark-bg m-3 p-4
-     rounded-2xl w-full">
+    <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
       <Header category="Page" title="Orders" />
       <GridComponent
         id="gridcomp"
