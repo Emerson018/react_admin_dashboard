@@ -9,6 +9,8 @@ const change = (args) => {
 
 const ColorPicker = () => {
   return (
+  <div className='m-2 md:m-10 mt-24 p-2
+    md:p-10 bg-white rounded-2xl w-full'>
     <div className='m-2 md:m-10 mt-24 p-2'>
       <Header category='App' title='Color Picker' />
       <div className='text-center'>
@@ -39,6 +41,7 @@ const ColorPicker = () => {
         </div>
       </div>
     </div>
+  </div>
   );
 };
 

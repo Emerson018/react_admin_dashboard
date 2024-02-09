@@ -56,12 +56,12 @@ const Ecommerce = () => {
         </div>
       </div>
 
-      <div className='flex gap-10 flex-wrap
+      <div className='flex gap-10 flex-wrap 
       justify-center'>
         <div className='bg-white
         dark:text-gray-200
         dark:bg-secondary-dark-bg m-3 p-4
-        rounded-2x1 md:w-780'>
+        rounded-2x1 md:w-780 rounded-2xl w-full'>
           <div className='flex justify-between'>
             <p className='font-semibold
             text-x1'>Revenue Updates</p>

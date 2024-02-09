@@ -41,9 +41,9 @@ const Navbar = () => {
   setIsClicked, handleClick, screenSize, setScreenSize,
   currentColor} = useStateContext();
 
-  const cartRef = useRef(null);
   const chatRef = useRef(null);
   const notificationRef = useRef(null);
+  const profileRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => 
@@ -66,13 +66,6 @@ const Navbar = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
-        cartRef.current &&
-        !cartRef.current.contains(event.target) &&
-        isClicked.cart
-      ) {
-        setIsClicked((prevState) => ({ ...prevState, cart: false }));
-      }
-      if (
         chatRef.current &&
         !chatRef.current.contains(event.target) &&
         isClicked.chat
@@ -85,6 +78,13 @@ const Navbar = () => {
         isClicked.notification
       ) {
         setIsClicked((prevState) => ({ ...prevState, notification: false }));
+      }
+      if (
+        profileRef.current &&
+        !profileRef.current.contains(event.target) &&
+        isClicked.userProfile
+      ) {
+        setIsClicked((prevState) => ({ ...prevState, userProfile: false }));
       }
     };
 
@@ -158,11 +158,8 @@ const Navbar = () => {
 
         </TooltipComponent>
 
-          {isClicked.cart  && (
-          <div ref={cartRef}>
-            <Cart />
-          </div>
-        )}
+          {isClicked.cart  && <Cart />}
+
           {isClicked.chat  && (
           <div ref={chatRef}>
             <Chat />
@@ -173,7 +170,11 @@ const Navbar = () => {
             <Notification />
           </div>
         )}
-          {isClicked.userProfile  && <UserProfile />}
+          {isClicked.userProfile  && (
+          <div ref={profileRef}>
+            <UserProfile />
+          </div>
+        )}
       </div>
 
     </div>
