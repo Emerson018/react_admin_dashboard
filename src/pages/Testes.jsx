@@ -14,6 +14,7 @@ import {
 } from '@syncfusion/ej2-react-grids';
 import { CustomGrid2 } from '../data/dummy';
 import Header from '../components/Header';
+import { ChartsHeader } from '../components/Charts';
 
 const Testes = () => {
   const [data, setData] = useState([]);
@@ -54,9 +55,9 @@ const Testes = () => {
 
   return (
 
-    <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+    <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
 
-      <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+      <div className="m-4 md:m-10 mt-24 p-10 md:p-10 bg-white rounded-3xl">
       {/* Adicionando a caixa de texto e o botão acima da div */}
       <div className="mb-4">
         <input
@@ -68,7 +69,7 @@ const Testes = () => {
         <button onClick={handleSearchButtonClick}>Pesquisar</button>
       </div>
       </div>
-      <Header category="Page" title="Testes" />
+      <ChartsHeader category="Testes" />
       <GridComponent
         dataSource={data}
         allowPaging
