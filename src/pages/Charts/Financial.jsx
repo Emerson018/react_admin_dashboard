@@ -23,6 +23,15 @@ const Financial = () => {
   const [financialData2, setFinancialData2] = useState([]);
   const [financialData3, setFinancialData3] = useState([]);
 
+  const palette = [
+    '#E94649',
+    '#F6B53F',
+    '#6FAAB0',
+    '#FF33F3',
+    '#228B22',
+    '#3399FF',
+];
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -62,6 +71,7 @@ const Financial = () => {
           tooltip={{ enable: true, shared: true }}
           crosshair={{ enable: true, lineType: 'Vertical', line: { width: 0 } }}
           background={currentMode === 'Dark' ? '#33373E' : '#fff'}
+          palettes={palette}
           legendSettings={{ background: currentMode === 'Dark' ? '#33373E' : '#fff', textStyle: { color: currentMode === 'Dark' ? '#fff' : '#333' } }}
         >
           <Inject services={[HiloSeries, Tooltip, DateTime, Logarithmic, Crosshair, Zoom, Legend]} />

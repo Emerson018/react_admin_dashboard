@@ -16,6 +16,11 @@ const Stacked = ({width, height}) => {
   const [stackedData, setStackedData] = useState([]);
   const { currentMode } = useStateContext();
 
+  const palette = [
+    '#105b5e',
+    '#868e5e',
+  ];
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,7 +49,9 @@ const Stacked = ({width, height}) => {
           primaryYAxis={stackedPrimaryYAxis}
           chartArea={{ border: { width: 0 } }}
           tooltip={{ enable: true }}
-          
+          background={currentMode === 'Dark' ? '#33373E' : '#fff'}
+          legendSettings={{ background: currentMode === 'Dark' ? '#33373E' : '#fff', textStyle: { color: currentMode === 'Dark' ? '#fff' : '#333' } }}
+          palettes={palette}
         >
           <Inject services={[StackingColumnSeries, Legend, Tooltip, Category]} />
           <SeriesCollectionDirective>
@@ -59,8 +66,7 @@ const Stacked = ({width, height}) => {
                   type={series.type}
                   marker={series.marker}
                   width={2}
-                  animation={{ enable: true }}
-                  
+                  animation={{ enable: true }}  
                 />
               )
             })}

@@ -11,6 +11,15 @@ const LineChart = () => {
   const [chartData2, setChartData2] = useState([]);
   const [chartData3, setChartData3] = useState([]);
 
+  const palette = [
+    '#E94649',
+    '#F6B53F',
+    '#6FAAB0',
+    '#FF33F3',
+    '#228B22',
+    '#3399FF',
+];
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -46,6 +55,7 @@ const LineChart = () => {
       chartArea={{ border: { width: 0 } }}
       tooltip={{ enable: true }}
       background={currentMode === 'Dark' ? '#33373E' : '#fff'}
+      palettes={palette}
       legendSettings={{ background: currentMode === 'Dark' ? '#33373E' : '#fff', textStyle: { color: currentMode === 'Dark' ? '#fff' : '#333' } }}
     >
       <Inject services={[LineSeries, DateTime, Legend, Tooltip]} />

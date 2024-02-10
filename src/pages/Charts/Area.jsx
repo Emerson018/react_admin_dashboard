@@ -7,6 +7,7 @@ import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, Dat
 import { ChartsHeader } from '../../components/Charts';
 import { areaPrimaryXAxis, areaPrimaryYAxis } from '../../data/dummy';
 import { useStateContext } from '../../ContextProvider';
+import { Palette } from '@syncfusion/ej2/diagrams';
 
 const Area = () => {
   const { currentMode } = useStateContext();
@@ -14,13 +15,21 @@ const Area = () => {
   const [areaData2, setAreaData2] = useState([]);
   const [areaData3, setAreaData3] = useState([]);
 
+  const palette = [
+    '#E94649',
+    '#F6B53F',
+    '#6FAAB0',
+    '#FF33F3',
+    '#228B22',
+    '#3399FF',
+];
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://127.0.0.1:8000/loja1/');
         const response2 = await axios.get('http://127.0.0.1:8000/loja2/');
         const response3 = await axios.get('http://127.0.0.1:8000/loja3/');
-
 
         // Substitua 'sua-api-endpoint-aqui' pelo endpoint correto da sua API
         setAreaData(response.data);
@@ -63,6 +72,7 @@ const Area = () => {
           primaryYAxis={areaPrimaryYAxis}
           chartArea={{ border: { width: 0 } }}
           background={currentMode === 'Dark' ? '#33373E' : '#fff'}
+          palettes={palette}
           legendSettings={{ background: currentMode === 'Dark' ? '#33373E' : '#fff', textStyle: { color: currentMode === 'Dark' ? '#fff' : '#333' } }}
         >
           <Inject services={[SplineAreaSeries, DateTime, Legend, Tooltip]} />
