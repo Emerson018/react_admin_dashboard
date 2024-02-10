@@ -6,7 +6,7 @@ import { AccumulationChartComponent, AccumulationSeriesCollectionDirective, Accu
 import { useStateContext } from '../../ContextProvider';
 
 const Doughnut = ({ id, legendVisiblity, height }) => {
-  const { currentMode } = useStateContext();
+  const { currentMode, currentColor } = useStateContext();
 
   const [pieData, setPieData] = useState([]);
 
@@ -33,7 +33,7 @@ const Doughnut = ({ id, legendVisiblity, height }) => {
       {pieData.length && (
     <AccumulationChartComponent
       id={id}
-      legendSettings={{ visible: legendVisiblity, background: 'white' }}
+      legendSettings={{ visible: legendVisiblity, background: currentMode === 'Dark' ? '#33373E' : '#fff', textStyle: { color: currentMode === 'Dark' ? '#fff' : '#333' }}}
       height={height}
       background={currentMode === 'Dark' ? '#33373E' : '#fff'}
       tooltip={{ enable: true }}

@@ -63,7 +63,7 @@ const Area = () => {
           primaryYAxis={areaPrimaryYAxis}
           chartArea={{ border: { width: 0 } }}
           background={currentMode === 'Dark' ? '#33373E' : '#fff'}
-          legendSettings={{ background: 'white' }}
+          legendSettings={{ background: currentMode === 'Dark' ? '#33373E' : '#fff', textStyle: { color: currentMode === 'Dark' ? '#fff' : '#333' } }}
         >
           <Inject services={[SplineAreaSeries, DateTime, Legend, Tooltip]} />
           <SeriesCollectionDirective>

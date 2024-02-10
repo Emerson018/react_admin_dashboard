@@ -35,7 +35,7 @@ const Pyramid = () => {
       <div className="w-full">
         <AccumulationChartComponent
           id="pyramid-chart"
-          legendSettings={{ background: 'white' }}
+          legendSettings={{ background: currentMode === 'Dark' ? '#33373E' : '#fff', textStyle: { color: currentMode === 'Dark' ? '#fff' : '#333' } }}
           tooltip={{ enable: true }}
           background={currentMode === 'Dark' ? '#33373E' : '#fff'}
         >
