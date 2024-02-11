@@ -72,7 +72,7 @@ const Testes = () => {
         <button onClick={handleSearchButtonClick}>Pesquisar</button>
       </div>
       </div>
-      <ChartsHeader category="Testes"/>
+      <ChartsHeader category="Lista"/>
       <GridComponent
         dataSource={data}
         allowPaging

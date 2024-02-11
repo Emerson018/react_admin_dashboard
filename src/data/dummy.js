@@ -1,4 +1,4 @@
-import React from 'react';
+  import React from 'react';
 import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock } from 'react-icons/ai';
 import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
 import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
@@ -308,14 +308,6 @@ export const CustomGrid2 = [
     textAlign: 'Center',},
     { field: 'data_produto',
     headerText: 'Data',
-    width: '150',
-    textAlign: 'Center',},
-    { field: 'usuario',
-    headerText: 'Usuário',
-    width: '150',
-    textAlign: 'Center',},
-    { field: 'info_produto',
-    headerText: 'Info',
     width: '150',
     textAlign: 'Center',},
     { field: 'foto',
