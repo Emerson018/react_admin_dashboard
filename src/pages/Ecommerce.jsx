@@ -1,11 +1,61 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { GoDotFill } from 'react-icons/go';
 import { Stacked, Button, SparkLine } from '../components/Charts';
 import { earningData, SparklineAreaData } from '../data/dummy';
 import { useStateContext } from '../ContextProvider';
 
+import axios from 'axios';
+
 const Ecommerce = () => {
   const { currentColor } = useStateContext();
+  const [totalEarnings, setTotalEarnings] = useState(0);
+  const [totalDeficit, setTotalDeficit] = useState(0);
+
+  const [lojaData1, setLojaData] = useState([]);
+  const [lojaData2, setLojaData2] = useState([]);
+  const [lojaData3, setLojaData3] = useState([]);
+    
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response1 = await axios.get('http://127.0.0.1:8000/loja1/');
+        const response2 = await axios.get('http://127.0.0.1:8000/loja2/');
+        const response3 = await axios.get('http://127.0.0.1:8000/loja3/');
+
+        setLojaData(response1.data);
+        setLojaData2(response2.data);
+        setLojaData3(response3.data);
+        
+        const loja1Variables = response1.data.map(item => ({
+          rendimento_mensal: item.rendimento_mensal,
+          menor_venda: item.menor_venda
+        }));
+        const loja2Variables = response2.data.map(item => ({
+          rendimento_mensal: item.rendimento_mensal,
+          menor_venda: item.menor_venda
+        }));
+        const loja3Variables = response3.data.map(item => ({
+          rendimento_mensal: item.rendimento_mensal,
+          menor_venda: item.menor_venda
+        }));
+        
+        const allVariables = [...loja1Variables, ...loja2Variables, ...loja3Variables];
+
+        const total = allVariables.reduce((acc, curr) => acc + curr.rendimento_mensal, 0);
+        setTotalEarnings(total)
+      
+        const totalDeficit = allVariables.reduce((acc, curr) => acc + curr.menor_venda, 0);
+        setTotalDeficit(totalDeficit)
+        
+
+      } catch (error) {
+        console.error('Erro ao obter dados do backend:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
 
   return (
     <div className='mt-12'>
@@ -13,8 +63,8 @@ const Ecommerce = () => {
         <div className='bg-white dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-2xl w-full lg:w-80 p-8 pt-9 m-3 bg-hero-pattern bg-no-repat bg-cover bg-center'>
           <div className='flex justify-between items-center'>
             <div>
-              <p className='font-bold text-gray-400'>Earnings</p>
-              <p className='text-2xl'>$60.448,35</p>
+              <p className='font-bold text-gray-400'>Rendimento Total</p>
+              <p className='text-2xl'>${totalEarnings.toFixed(2)}</p>
             </div>
           </div>
           <div className='mt-6'>
@@ -85,7 +135,7 @@ const Ecommerce = () => {
             border-color m-4 pr-10'>
               <div>
                 <p>
-                  <span className='text-3xl font-semibold'>$93,438</span>
+                  <span className='text-3xl font-semibold'>${}</span>
                   <span className='p-1.5 
                   hover:drop-shadow-x1
                   cursor-pointer
@@ -96,7 +146,7 @@ const Ecommerce = () => {
               </div>
               <div  className='mt-8'>
                 <p>
-                  <span className='text-3xl font-semibold'>$48,438</span>
+                  <span className='text-3xl font-semibold'>${totalDeficit}</span>
                 </p>
                 <p className='text-gray-500'>Expense</p>
               </div>
