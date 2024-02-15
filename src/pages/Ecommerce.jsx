@@ -92,7 +92,7 @@ const Ecommerce = () => {
           <div className='flex justify-between items-center'>
             <div>
               <p className='font-bold text-gray-400'>Rendimento Total</p>
-              <p className='text-2xl'>${totalEarnings.toFixed(2)}</p>
+              <p className='text-2xl'>R${totalEarnings.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
             </div>
           </div>
           <div className='mt-6'>
@@ -120,7 +120,7 @@ const Ecommerce = () => {
               </button>
               <p className='mt-3'>
                 <span className='text-lg font-semibold'>
-                  {item.amount}
+                  {item.amount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </span>
                 <span className={`text-sm text-${item.pcColor} ml-2`}>
                   {item.percentage}
@@ -130,7 +130,7 @@ const Ecommerce = () => {
                 {item.title}
                 </p>
                 <p className='text-sm text-gray-400 mt-1'>
-              Prejuízos Mensais: {item.losses}
+              Prejuízos Mensais: {item.losses.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </p>
             </div>
           ))}
