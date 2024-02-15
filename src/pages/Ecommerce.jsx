@@ -17,66 +17,72 @@ const Ecommerce = () => {
 
   const [earningDataWithBackend, setEarningDataWithBackend] = useState([]);
 
+  const fetchData = async (url) => {
+    try {
+      const response = await axios.get(url);
+      const totalEarnings = response.data.reduce((acc, curr) => acc + curr.rendimento_mensal, 0);
+      const totalLosses = response.data.reduce((acc, curr) => acc + curr.menor_venda, 0);
+      return { totalEarnings, totalLosses };
+    } catch (error) {
+      console.error('Erro ao obter dados do backend:', error);
+      return { totalEarnings: 0, totalLosses: 0 };
+    }
+  };
+
+  const createData = (icon, amount, losses, title, iconColor, iconBg, pcColor) => ({
+    icon,
+    amount,
+    losses,
+    percentage: (losses / amount * 100).toFixed(2) + '%',
+    title,
+    iconColor,
+    iconBg,
+    pcColor,
+  });
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response1 = await axios.get('http://127.0.0.1:8000/loja1/');
-        const response2 = await axios.get('http://127.0.0.1:8000/loja2/');
-        const response3 = await axios.get('http://127.0.0.1:8000/loja3/');
+    const fetchDataForAllStores = async () => {
+      const response1 = await fetchData('http://127.0.0.1:8000/loja1/');
+      const response2 = await fetchData('http://127.0.0.1:8000/loja2/');
+      const response3 = await fetchData('http://127.0.0.1:8000/loja3/');
 
-        const loja1TotalEarnings = response1.data.reduce((acc, curr) => acc + curr.rendimento_mensal, 0);
-        const loja2TotalEarnings = response2.data.reduce((acc, curr) => acc + curr.rendimento_mensal, 0);
-        const loja3TotalEarnings = response3.data.reduce((acc, curr) => acc + curr.rendimento_mensal, 0);
-        const loja1TotalLosses = response1.data.reduce((acc, curr) => acc + curr.menor_venda, 0);
-        const loja2TotalLosses = response2.data.reduce((acc, curr) => acc + curr.menor_venda, 0);
-        const loja3TotalLosses = response3.data.reduce((acc, curr) => acc + curr.menor_venda, 0);
-        
+      const loja1Data = createData(
+        <MdOutlineSupervisorAccount />,
+        response1.totalEarnings,
+        response1.totalLosses,
+        'Loja 1',
+        '#03C9D7',
+        '#E5FAFB',
+        'red-600'
+      );
 
+      const loja2Data = createData(
+        <BsBoxSeam />,
+        response2.totalEarnings,
+        response2.totalLosses,
+        'Loja 2',
+        'rgb(255, 244, 229)',
+        'rgb(254, 201, 15)',
+        'red-600'
+      );
 
-        const loja1Data = {
-          icon: <MdOutlineSupervisorAccount />,
-          amount: loja1TotalEarnings,
-          losses: loja1TotalLosses,
-          percentage: '-' + (loja1TotalLosses / loja1TotalEarnings * 100).toFixed(2) + '%', // Defina conforme a lógica do seu aplicativo
-          title: 'Loja 1',
-          iconColor: '#03C9D7',
-          iconBg: '#E5FAFB',
-          pcColor: 'red-600',
-        };
+      const loja3Data = createData(
+        <FiBarChart />,
+        response3.totalEarnings,
+        response3.totalLosses,
+        'Loja 3',
+        'rgb(228, 106, 118)',
+        'rgb(255, 244, 229)',
+        'red-600'
+      );
 
-        const loja2Data = {
-          icon: <BsBoxSeam />,
-          amount: loja2TotalEarnings,
-          losses: loja2TotalLosses,
-          percentage: '-' + (loja2TotalLosses / loja2TotalEarnings * 100).toFixed(2) + '%', // Defina conforme a lógica do seu aplicativo
-          title: 'Loja 2',
-          iconColor: 'rgb(255, 244, 229)',
-          iconBg: 'rgb(254, 201, 15)',
-          pcColor: 'red-600',
-        };
-
-        const loja3Data = {
-          icon: <FiBarChart />,
-          amount: loja3TotalEarnings,
-          losses: loja3TotalLosses,
-          percentage: '-' + (loja3TotalLosses / loja3TotalEarnings * 100).toFixed(2) + '%', // Defina conforme a lógica do seu aplicativo
-          title: 'Loja 3',
-          iconColor: 'rgb(228, 106, 118)',
-          iconBg: 'rgb(255, 244, 229)',
-          pcColor: 'red-600',
-        };
-
-        const combinedData = [loja1Data, loja2Data, loja3Data];
-        setTotalEarnings(loja1TotalEarnings + loja2TotalEarnings + loja3TotalEarnings)
-        setTotalLosses(loja1TotalLosses + loja2TotalLosses + loja3TotalLosses);
-        setEarningDataWithBackend(combinedData);
-
-      } catch (error) {
-        console.error('Erro ao obter dados do backend:', error);
-      }
+      const combinedData = [loja1Data, loja2Data, loja3Data];
+      setTotalEarnings(response1.totalEarnings + response2.totalEarnings + response3.totalEarnings);
+      setTotalLosses(response1.totalLosses + response2.totalLosses + response3.totalLosses);
+      setEarningDataWithBackend(combinedData);
     };
 
-    fetchData();
+    fetchDataForAllStores();
   }, []);
 
   return (
