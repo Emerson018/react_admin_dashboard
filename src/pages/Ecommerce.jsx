@@ -7,18 +7,15 @@ import { useStateContext } from '../ContextProvider';
 import { BsBoxSeam } from 'react-icons/bs';
 import { MdOutlineSupervisorAccount } from 'react-icons/md';
 import { FiBarChart } from 'react-icons/fi';
-import { HiOutlineRefresh } from 'react-icons/hi';
 
 import axios from 'axios';
 
 const Ecommerce = () => {
   const { currentColor } = useStateContext();
   const [totalEarnings, setTotalEarnings] = useState(0);
-  const [totalDeficit, setTotalDeficit] = useState(0);
+  const [totalLosses, setTotalLosses] = useState(0);
 
-  const [lojaData1, setLojaData] = useState([]);
-  const [lojaData2, setLojaData2] = useState([]);
-  const [lojaData3, setLojaData3] = useState([]);
+  const [earningDataWithBackend, setEarningDataWithBackend] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,45 +24,52 @@ const Ecommerce = () => {
         const response2 = await axios.get('http://127.0.0.1:8000/loja2/');
         const response3 = await axios.get('http://127.0.0.1:8000/loja3/');
 
-        setLojaData(response1.data);
-        setLojaData2(response2.data);
-        setLojaData3(response3.data);
+        const loja1TotalEarnings = response1.data.reduce((acc, curr) => acc + curr.rendimento_mensal, 0);
+        const loja2TotalEarnings = response2.data.reduce((acc, curr) => acc + curr.rendimento_mensal, 0);
+        const loja3TotalEarnings = response3.data.reduce((acc, curr) => acc + curr.rendimento_mensal, 0);
+        const loja1TotalLosses = response1.data.reduce((acc, curr) => acc + curr.menor_venda, 0);
+        const loja2TotalLosses = response2.data.reduce((acc, curr) => acc + curr.menor_venda, 0);
+        const loja3TotalLosses = response3.data.reduce((acc, curr) => acc + curr.menor_venda, 0);
+        
 
-        const loja1Variables = response1.data.map(item => ({
-          rendimento_mensal: item.rendimento_mensal,
-          menor_venda: item.menor_venda
-        }));
-        const loja2Variables = response2.data.map(item => ({
-          rendimento_mensal: item.rendimento_mensal,
-          menor_venda: item.menor_venda
-        }));
-        const loja3Variables = response3.data.map(item => ({
-          rendimento_mensal: item.rendimento_mensal,
-          menor_venda: item.menor_venda
-        }));
 
-        const allVariables = [...loja1Variables, ...loja2Variables, ...loja3Variables];
+        const loja1Data = {
+          icon: <MdOutlineSupervisorAccount />,
+          amount: loja1TotalEarnings,
+          losses: loja1TotalLosses,
+          percentage: '-' + (loja1TotalLosses / loja1TotalEarnings * 100).toFixed(2) + '%', // Defina conforme a lógica do seu aplicativo
+          title: 'Loja 1',
+          iconColor: '#03C9D7',
+          iconBg: '#E5FAFB',
+          pcColor: 'red-600',
+        };
 
-        const total = allVariables.reduce((acc, curr) => acc + curr.rendimento_mensal, 0);
-        setTotalEarnings(total);
+        const loja2Data = {
+          icon: <BsBoxSeam />,
+          amount: loja2TotalEarnings,
+          losses: loja2TotalLosses,
+          percentage: '-' + (loja2TotalLosses / loja2TotalEarnings * 100).toFixed(2) + '%', // Defina conforme a lógica do seu aplicativo
+          title: 'Loja 2',
+          iconColor: 'rgb(255, 244, 229)',
+          iconBg: 'rgb(254, 201, 15)',
+          pcColor: 'red-600',
+        };
 
-        const totalDeficit = allVariables.reduce((acc, curr) => acc + curr.menor_venda, 0);
-        setTotalDeficit(totalDeficit);
+        const loja3Data = {
+          icon: <FiBarChart />,
+          amount: loja3TotalEarnings,
+          losses: loja3TotalLosses,
+          percentage: '-' + (loja3TotalLosses / loja3TotalEarnings * 100).toFixed(2) + '%', // Defina conforme a lógica do seu aplicativo
+          title: 'Loja 3',
+          iconColor: 'rgb(228, 106, 118)',
+          iconBg: 'rgb(255, 244, 229)',
+          pcColor: 'red-600',
+        };
 
-        // Atualize os valores de amount em earningData com os rendimentos mensais de cada loja
-        const updatedEarningData = earningData.map((item, index) => {
-          switch (index) {
-            case 0:
-              return { ...item, amount: lojaData1.map(data => data.rendimento_mensal).reduce((acc, curr) => acc + curr, 0) };
-            case 1:
-              return { ...item, amount: lojaData2.map(data => data.rendimento_mensal).reduce((acc, curr) => acc + curr, 0) };
-            case 2:
-              return { ...item, amount: lojaData3.map(data => data.rendimento_mensal).reduce((acc, curr) => acc + curr, 0) };
-            default:
-              return item;
-          }
-        });
-        setEarningData(updatedEarningData);
+        const combinedData = [loja1Data, loja2Data, loja3Data];
+        setTotalEarnings(loja1TotalEarnings + loja2TotalEarnings + loja3TotalEarnings)
+        setTotalLosses(loja1TotalLosses + loja2TotalLosses + loja3TotalLosses);
+        setEarningDataWithBackend(combinedData);
 
       } catch (error) {
         console.error('Erro ao obter dados do backend:', error);
@@ -74,47 +78,6 @@ const Ecommerce = () => {
 
     fetchData();
   }, []);
-
-  const [earningData, setEarningData] = useState([
-    {
-      icon: <MdOutlineSupervisorAccount />,
-      amount: '',
-      percentage: '-25%',
-      title: 'Loja 1',
-      iconColor: '#03C9D7',
-      iconBg: '#E5FAFB',
-      pcColor: 'red-600',
-    },
-    {
-      icon: <BsBoxSeam />,
-      amount: '',
-      percentage: '+23%',
-      title: 'Loja 2',
-      iconColor: 'rgb(255, 244, 229)',
-      iconBg: 'rgb(254, 201, 15)',
-      pcColor: 'green-600',
-    },
-    {
-      icon: <FiBarChart />,
-      amount: '',
-      percentage: '+38%',
-      title: 'Loja 3',
-      iconColor: 'rgb(228, 106, 118)',
-      iconBg: 'rgb(255, 244, 229)',
-
-      pcColor: 'green-600',
-    },
-    {
-      icon: <HiOutlineRefresh />,
-      amount: '',
-      percentage: '-12%',
-      title: 'Perdas',
-      iconColor: 'rgb(0, 194, 146)',
-      iconBg: 'rgb(235, 250, 242)',
-      pcColor: 'red-600',
-    },
-  ]);
-
 
   return (
     <div className='mt-12'>
@@ -138,7 +101,7 @@ const Ecommerce = () => {
         </div>
 
         <div className='flex m-3 flex-wrap justify-center gap-1 items-center'>
-          {earningData.map((item) => (
+        {earningDataWithBackend.map((item) => (
             <div
               key={item.title}
               className='bg-white dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56 p-4 pt-9 rounded-2xl'
@@ -158,7 +121,11 @@ const Ecommerce = () => {
                 </span>
               </p>
               <p className='text-sm text-gray-400 mt-1'>
-                {item.title}</p>
+                {item.title}
+                </p>
+                <p className='text-sm text-gray-400 mt-1'>
+              Prejuízos Mensais: {item.losses}
+            </p>
             </div>
           ))}
         </div>
@@ -172,7 +139,7 @@ const Ecommerce = () => {
         rounded-2x1 md:w-780 rounded-2xl w-full'>
           <div className='flex justify-between'>
             <p className='font-semibold
-            text-x1'>Revenue Updates</p>
+            text-x1'>Atualizações da receita</p>
               <div className='flex items-center gap-4'>
                 <p className='flex items-center gap-2
                   text-gray-600
@@ -194,7 +161,7 @@ const Ecommerce = () => {
             border-color m-4 pr-10'>
               <div>
                 <p>
-                  <span className='text-3xl font-semibold'>${}</span>
+                  <span className='text-3xl font-semibold'>${'asasd'}</span>
                   <span className='p-1.5 
                   hover:drop-shadow-x1
                   cursor-pointer
@@ -205,7 +172,7 @@ const Ecommerce = () => {
               </div>
               <div  className='mt-8'>
                 <p>
-                  <span className='text-3xl font-semibold'>${totalDeficit}</span>
+                  <span className='text-3xl font-semibold'>${}</span>
                 </p>
                 <p className='text-gray-500'>Expense</p>
               </div>
