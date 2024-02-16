@@ -61,7 +61,7 @@ const Stacked = ({width, height}) => {
                   key={index}
                   dataSource={stackedData}
                   xName='clientes_total'
-                  yName='clientes_cnpj'
+                  yName='clientes_cpf'
                   name={series.name}
                   type={series.type}
                   marker={series.marker}

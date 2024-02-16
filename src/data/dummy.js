@@ -1,12 +1,10 @@
   import React from 'react';
 import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock } from 'react-icons/ai';
-import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
-import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
+import { FiShoppingBag, FiEdit, FiPieChart, FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
+import { BsKanban, BsBarChart, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
 import { BiColorFill } from 'react-icons/bi';
 import { IoMdContacts } from 'react-icons/io';
 import { RiContactsLine, RiStockLine } from 'react-icons/ri';
-import { MdOutlineSupervisorAccount } from 'react-icons/md';
-import { HiOutlineRefresh } from 'react-icons/hi';
 import { TiTick } from 'react-icons/ti';
 import { GiLouvrePyramid } from 'react-icons/gi';
 import { GrLocation, GrTest } from 'react-icons/gr';
@@ -2994,44 +2992,23 @@ export const ecomPieChartData = [
   { x: '2021', y: 18, text: '25%' },
 ];
 
-export const stackedChartData = [
-  [
-    { x: 'Jan', y: 111.1 },
-    { x: 'Feb', y: 127.3 },
-    { x: 'Mar', y: 143.4 },
-    { x: 'Apr', y: 159.9 },
-    { x: 'May', y: 159.9 },
-    { x: 'Jun', y: 159.9 },
-    { x: 'July', y: 159.9 },
-  ],
-  [
-    { x: 'Jan', y: 111.1 },
-    { x: 'Feb', y: 127.3 },
-    { x: 'Mar', y: 143.4 },
-    { x: 'Apr', y: 159.9 },
-    { x: 'May', y: 159.9 },
-    { x: 'Jun', y: 159.9 },
-    { x: 'July', y: 159.9 },
-  ],
-];
+
 
 export const stackedCustomSeries = [
 
-  { dataSource: stackedChartData[0],
+  {
     xName: 'x',
     yName: 'y',
-    name: 'Budget',
+    name: 'Clientes CPF',
     type: 'StackingColumn',
-    background: 'blue',
 
   },
 
-  { dataSource: stackedChartData[1],
+  {
     xName: 'x',
     yName: 'y',
-    name: 'Expense',
+    name: 'Clientes CNPJ',
     type: 'StackingColumn',
-    background: 'red',
 
   },
 
@@ -3050,8 +3027,8 @@ export const stackedPrimaryXAxis = {
 
 export const stackedPrimaryYAxis = {
   lineStyle: { width: 0 },
-  minimum: 100,
-  maximum: 400,
+  minimum: 0,
+  maximum: 300,
   interval: 100,
   majorTickLines: { width: 0 },
   majorGridLines: { width: 1 },
