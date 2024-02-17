@@ -2999,7 +2999,7 @@ export const stackedCustomSeries = [
   {
     xName: 'x',
     yName: 'y',
-    name: 'Clientes CPF',
+    name: 'CPF',
     type: 'StackingColumn',
 
   },
@@ -3007,7 +3007,7 @@ export const stackedCustomSeries = [
   {
     xName: 'x',
     yName: 'y',
-    name: 'Clientes CNPJ',
+    name: 'CNPJ',
     type: 'StackingColumn',
 
   },
@@ -3028,7 +3028,7 @@ export const stackedPrimaryXAxis = {
 export const stackedPrimaryYAxis = {
   lineStyle: { width: 0 },
   minimum: 0,
-  maximum: 300,
+  maximum: 400,
   interval: 100,
   majorTickLines: { width: 0 },
   majorGridLines: { width: 1 },

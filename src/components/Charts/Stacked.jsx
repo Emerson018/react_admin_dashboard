@@ -48,7 +48,10 @@ const Stacked = ({width, height}) => {
           primaryXAxis={stackedPrimaryXAxis}
           primaryYAxis={stackedPrimaryYAxis}
           chartArea={{ border: { width: 0 } }}
-          tooltip={{ enable: true }}
+          tooltip={{
+            enable: true,
+            format: '${series.name}: ${point.y}'
+          }}
           background={currentMode === 'Dark' ? '#33373E' : '#fff'}
           legendSettings={{ background: currentMode === 'Dark' ? '#33373E' : '#fff', textStyle: { color: currentMode === 'Dark' ? '#fff' : '#333' } }}
           palettes={palette}
@@ -61,7 +64,7 @@ const Stacked = ({width, height}) => {
                   key={index}
                   dataSource={stackedData}
                   xName='clientes_total'
-                  yName='clientes_cpf'
+                  yName={series.name === 'CPF' ? 'clientes_cpf' : 'clientes_cnpj'}
                   name={series.name}
                   type={series.type}
                   marker={series.marker}
