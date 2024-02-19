@@ -30,7 +30,7 @@ const Pyramid = () => {
   return (
     <>
       {pyramidData.length > 0 && (
-    <div className="m-4 md:m-10 mt-24  p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
+    <div className="chart-layout dark:bg-secondary-dark-bg">
       <ChartsHeader category="Pyramid" title="Food Comparison Chart" />
       <div className="w-full">
         <AccumulationChartComponent

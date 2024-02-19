@@ -23,7 +23,7 @@ const Line = () => {
   }, []);
 
   return (
-    <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
+    <div className="chart-layout dark:bg-secondary-dark-bg">
       <ChartsHeader category="Line" title="inflation Rate" />
       <div className="w-full">
         <LineChart data={chartData} />

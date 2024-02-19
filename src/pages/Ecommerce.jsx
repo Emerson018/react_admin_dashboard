@@ -87,15 +87,15 @@ const Ecommerce = () => {
 
   return (
     <div className='mt-12'>
-      <div className='flex flex-wrap lg:flex-nowrap justify-center'>
-        <div className='bg-white dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-2xl w-full lg:w-80 p-8 pt-9 m-3 bg-hero-pattern bg-no-repat bg-cover bg-center'>
-          <div className='flex justify-between items-center'>
+      <div className='chart-ecommerce-layout'>
+        <div className='body-budget-card dark:bg-secondary-dark-bg'>
+          <div className='chart-ecommerce-layout'>
             <div>
-              <p className='font-bold text-gray-400'>Rendimento Total</p>
-              <p className='text-2xl'>R${totalEarnings.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+              <p className='budget-element'>Rendimento Total</p>
+              <p className='total-budget'>R$ {totalEarnings.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
             </div>
           </div>
-          <div className='mt-6'>
+          <div className='ecommerce-button'>
             <Button
               color='white'
               bgColor={currentColor}
@@ -106,75 +106,63 @@ const Ecommerce = () => {
           </div>
         </div>
 
-        <div className='flex m-3 flex-wrap justify-center gap-1 items-center'>
+        <div className='store-elements'>
         {earningDataWithBackend.map((item) => (
             <div
               key={item.title}
-              className='bg-white dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56 p-4 pt-9 rounded-2xl'
+              className='store-layout dark:text-gray-200 dark:bg-secondary-dark-bg'
             >
               <button 
                 type='button'
                 style={{ color: item.iconColor, backgroundColor: item.iconBg }}
-                className='text-2xl opacity-0.9 rounded-full p-4 hover:drop-shadow-x1'
+                className='button-store-elements'
               >
               </button>
-              <p className='mt-3'>
-                <span className='text-lg font-semibold'>
+              <p className='store-scale'>
+                <span className='text-store-layout'>R$ 
                   {item.amount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </span>
-                <span className={`text-sm text-${item.pcColor} ml-2`}>
+                <span className={`percent-txt text-${item.pcColor}`}>
                   {item.percentage}
                 </span>
               </p>
-              <p className='text-sm text-gray-400 mt-1'>
+              <p className='text-store-secondary'>
                 {item.title}
                 </p>
-                <p className='text-sm text-gray-400 mt-1'>
-              Prejuízos Mensais: {item.losses.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                <p className='text-store-secondary'>
+              Baixas: R$ {item.losses.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </p>
             </div>
           ))}
         </div>
       </div>
 
-      <div className='flex gap-10 flex-wrap 
-      justify-center'>
-        <div className='bg-white
-        dark:text-gray-200
-        dark:bg-secondary-dark-bg m-3 p-4
-        rounded-2x1 md:w-780 rounded-2xl w-full'>
-          <div className='flex justify-between'>
-            <p className='font-semibold
-            text-x1'>Atualizações da receita</p>
-              <div className='flex items-center gap-4'>
-                <p className='flex items-center gap-2
+      <div className='container-revenue'>
+        <div className='container-revenue-layout dark:text-gray-200 dark:bg-secondary-dark-bg'>
+          <div className='container-revenue-top-left'>
+            <p className='container-revenue-title'>Atualizações da receita</p>
+              <div className='container-revenue-text'>
+                <p className='container-revenue-text
                   text-gray-600
                   hover:drop-shadow-x1'>
                   <span><GoDotFill  /></span>
                   <span>Expense</span>
                 </p>
-                <p className='flex items-center gap-2
-                text-green-400
-                hover:drop-shadow-x1'>
+                <p className='container-revenue-text
+                container-revenue-text-budget'>
                   <span><GoDotFill  /></span>
-                  <span>Budget</span>
+                  <span>Gráfico</span>
                 </p>
               </div>
           </div>
-          <div className='mt-10 flex gap 
-          flex-wrap justify-center'>
-            <div className='border-r-1
-            border-color m-4 pr-10'>
+          <div className='container-stacked-graph'>
+            <div className='container-stacked-layout'>
               <div>
                 <p>
-                  <span className='text-3xl font-semibold'>${'asasd'}</span>
-                  <span className='p-1.5 
-                  hover:drop-shadow-x1
-                  cursor-pointer
-                  rounded-full text-white
-                  bg-green-400 ml-3 text-xs'>23%</span>
+                  <span className='container-customers'>${'asasd'}</span>
+                  <span className='container-float-value'>23%</span>
                 </p>
-                <p className='text-gray-500'>Budget</p>
+                <p className='text-gray-500'>Clientes Totais</p>
               </div>
               <div  className='mt-8'>
                 <p>

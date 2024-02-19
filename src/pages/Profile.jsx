@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProfilePage = () => {
   return (
-    <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+    <div className="chart-layout dark:bg-secondary-dark-bg">
       <div className="flex items-center justify-center">
         <img
           className="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover"
