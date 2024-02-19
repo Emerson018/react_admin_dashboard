@@ -1,24 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
 import { AccumulationChartComponent, AccumulationSeriesCollectionDirective, AccumulationSeriesDirective, AccumulationLegend, PieSeries, AccumulationDataLabel, Inject, AccumulationTooltip } from '@syncfusion/ej2-react-charts';
-
 import { useStateContext } from '../../ContextProvider';
 
-const Doughnut = ({ id, legendVisiblity, height }) => {
-  const { currentMode, currentColor } = useStateContext();
-
+const Doughnut = ({ id, legendVisibility, height }) => {
+  const { currentMode } = useStateContext();
   const [pieData, setPieData] = useState([]);
 
-  useEffect (() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://127.0.0.1:8000/loja1/');
-
         setPieData(response.data);
-
-        
-
         console.log('Dados do banco de dados:', response.data);
       } catch (error) {
         console.error('Erro ao obter os dados: ', error);
@@ -30,41 +23,45 @@ const Doughnut = ({ id, legendVisiblity, height }) => {
 
   return (
     <>
-      {pieData.length && (
-    <AccumulationChartComponent
-      id={id}
-      legendSettings={{ visible: legendVisiblity, background: currentMode === 'Dark' ? '#33373E' : '#fff', textStyle: { color: currentMode === 'Dark' ? '#fff' : '#333' }}}
-      height={height}
-      background={currentMode === 'Dark' ? '#33373E' : '#fff'}
-      tooltip={{ enable: true }}
-    >
-      <Inject services={[AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationTooltip]} />
-      <AccumulationSeriesCollectionDirective>
-        <AccumulationSeriesDirective
-          name='Loja 1'
-          dataSource={pieData}
-          xName="tipo_produto"
-          yName="qtd_produtos"
-          innerRadius="40%"
-          startAngle={0}
-          endAngle={360}
-          radius="70%"
-          explode
-          explodeOffset="10%"
-          explodeIndex={2}
-          dataLabel={{
-            visible: true,
-            name: 'text',
-            position: 'Inside',
-            font: {
-              fontWeight: '600',
-              color: '#fff',
-            },
+      {pieData.length > 0 && (
+        <AccumulationChartComponent
+          id={id}
+          legendSettings={{
+            visible: legendVisibility,
+            background: currentMode === 'Dark' ? '#33373E' : '#fff',
+            textStyle: { color: currentMode === 'Dark' ? '#fff' : '#333' }
           }}
-        />
-      </AccumulationSeriesCollectionDirective>
-    </AccumulationChartComponent>
-    )}
+          height={height}
+          background={currentMode === 'Dark' ? '#33373E' : '#fff'}
+          tooltip={{ enable: true }}
+        >
+          <Inject services={[AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationTooltip]} />
+          <AccumulationSeriesCollectionDirective>
+            <AccumulationSeriesDirective
+              name='Loja 1'
+              dataSource={pieData}
+              xName="tipo_produto"
+              yName="qtd_produtos"
+              innerRadius="40%"
+              startAngle={0}
+              endAngle={360}
+              radius="70%"
+              explode
+              explodeOffset="10%"
+              explodeIndex={2}
+              dataLabel={{
+                visible: true,
+                name: 'text',
+                position: 'Inside',
+                font: {
+                  fontWeight: '600',
+                  color: '#fff',
+                },
+              }}
+            />
+          </AccumulationSeriesCollectionDirective>
+        </AccumulationChartComponent>
+      )}
     </>
   );
 };
