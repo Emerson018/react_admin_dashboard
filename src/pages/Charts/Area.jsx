@@ -46,15 +46,12 @@ const Area = () => {
   }, []);
 
   const mapeaDados = (dados) => {
-    const mappedData = dados.map((item) => {
-      const mappedItem = {
+    const mappedData = dados
+      .map((item) => ({
         x: new Date(item.data),
         y: item.porc_variacao_anual,
-      };
-      console.log(mappedItem); // Registra os dados mapeados
-      return mappedItem;
-    });
-    console.log(mappedData); // Registra todo o array mapeado
+      }))
+      .sort((a, b) => a.x - b.x); // Ordena os dados por data
     return mappedData;
   };
 

@@ -444,7 +444,18 @@ export const links = [
       },
     ],
   },
+  {
+    title: 'Profile',
+    links: [
+      {
+        name: 'profile',
+        icon: <AiOutlineStock />,
+      },
+    ],
+  },
+  
 ];
+
 
 export const cartData = [
   {

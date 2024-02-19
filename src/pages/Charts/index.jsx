@@ -15,3 +15,4 @@ export { default as Pie } from './Pie';
 export { default as Pyramid } from './Pyramid';
 export { default as Stacked } from './Stacked';
 export { default as Testes } from '../Testes';
+export { default as Profile } from '../Profile'

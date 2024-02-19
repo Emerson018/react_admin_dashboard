@@ -29,9 +29,9 @@ const LineChart = () => {
 
 
         // Substitua 'sua-api-endpoint-aqui' pelo endpoint correto da sua API
-        setChartData(response.data);
-        setChartData2(response2.data);
-        setChartData3(response3.data);
+        setChartData(response.data.sort((a, b) => new Date(a.data) - new Date(b.data)));
+        setChartData2(response2.data.sort((a, b) => new Date(a.data) - new Date(b.data)));
+        setChartData3(response3.data.sort((a, b) => new Date(a.data) - new Date(b.data)));
 
         console.log('Dados do banco de dados:', response.data);
       } catch (error) {
