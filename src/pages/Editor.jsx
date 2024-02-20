@@ -10,7 +10,7 @@ import Header from '../components/Header';
 const Editor = () => {
   return (
     <div className='chart-layout dark:bg-secondary-dark-bg'>
-      <Header category='App' title='Editor' />
+      <Header category='Editor' />
       <RichTextEditorComponent>
         <Inject services={[Toolbar, Image, Link,
           HtmlEditor, QuickToolbar]} />

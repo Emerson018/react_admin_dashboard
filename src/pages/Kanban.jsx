@@ -9,7 +9,7 @@ import Header from '../components/Header';
 const Kanban = () => {
   return (
     <div className='chart-layout dark:bg-secondary-dark-bg'>
-      <Header category='App' title='Kanban' />
+      <Header category='Kanban' />
       <KanbanComponent
         id='kanban'
         dataSource={kanbanData}

@@ -4,12 +4,12 @@ import { GridComponent, ColumnsDirective, ColumnDirective, Page,
 
 import { employeesData, employeesGrid } from '../data/dummy';
 
-import Header from '../components/Header';
+import Pages from '../components/Pages';
 
 const Employees = () => {
   return (
     <div className="chart-layout dark:bg-secondary-dark-bg">
-      <Header category="Página" title="Funcionários" />
+      <Pages category="Employees" />
       <GridComponent
         dataSource={employeesData}
         allowPaging

@@ -221,3 +221,9 @@ body {
     font-size: 0.75rem; /* Equivalente a text-xs */
     margin-left: 0.75rem; /* Equivalente a ml-3 */
 }
+
+.color-picker-bg {
+    margin: 1rem;
+    background-color: white;
+    border-radius: 2rem;
+}

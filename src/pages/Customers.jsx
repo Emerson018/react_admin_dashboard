@@ -5,12 +5,12 @@ ColumnDirective, Page, Selection, Inject,
 Edit, Toolbar, Sort, Filter } from '@syncfusion/ej2-react-grids';
 
 import { customersData, customersGrid } from '../data/dummy';
-import Header from '../components/Header';
+import Pages from '../components/Pages';
 
 const Customers = () => {
   return (
     <div className="chart-layout dark:bg-secondary-dark-bg">
-      <Header category="Page" title="Customers" />
+      <Pages category="Customers" />
       <GridComponent
         dataSource={customersData}
         allowPaging

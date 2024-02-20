@@ -6,13 +6,13 @@ PdfExport, Edit, Inject } from '@syncfusion/ej2-react-grids';
 import { ordersData, contextMenuItems,
 ordersGrid } from '../data/dummy';
 
-import Header from '../components/Header';
+import Pages from '../components/Pages';
 
 const Orders = () => {
   const editing = { allowDeleting: true, allowEditing: true };
   return (
     <div className="chart-layout dark:bg-secondary-dark-bg">
-      <Header category="Page" title="Orders" />
+      <Pages category="Orders" />
       <GridComponent
         id="gridcomp"
         dataSource={ordersData}

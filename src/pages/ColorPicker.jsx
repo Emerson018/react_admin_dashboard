@@ -10,13 +10,16 @@ const change = (args) => {
 const ColorPicker = () => {
   return (
   <div className='chart-layout dark:bg-secondary-dark-bg'>
-    <div className='m-2 md:m-10 mt-24 p-2'>
-      <Header category='App' title='Color Picker' />
+    
+      <Header category='Color Picker' title='Pick a Color' />
+      
       <div className='text-center'>
+      <div  className='color-picker-bg '>  
         <div id='preview' />
+        </div>
         <div className='flex justify-center items-center gap-20 flex-wrap'>
           <div>
-            <p className='text-2x1 font-semibold mt-2 mb-4'>Inline Pallete</p>
+            <p className='text-2x1 font-semibold mt-2 mb-4 dark:text-gray-200'>Inline Pallete</p>
             <ColorPickerComponent
               id='inline-pallete'
               mode='Palette'
@@ -24,10 +27,11 @@ const ColorPicker = () => {
               inline
               showButtons={false}
               change={change}
+              
             />
           </div>
           <div>
-            <p className='text-2x1 font-semibold mt-2 mb-4'>Inline Picker</p>
+            <p className='text-2x1 font-semibold mt-2 mb-4 dark:text-gray-200'>Inline Picker</p>
             <ColorPickerComponent
               id='inline-pallete'
               mode='Picker'
@@ -39,7 +43,7 @@ const ColorPicker = () => {
           </div>
         </div>
       </div>
-    </div>
+    
   </div>
   );
 };

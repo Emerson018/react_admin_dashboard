@@ -63,6 +63,7 @@ const Testes = () => {
         editSettings={{ allowDeleting: true, allowEditing: true }}
         width="auto"
         searchSettings={{ fields: ['Name'] }}
+        
       >
         <ColumnsDirective>
           {CustomGrid2.map((item) => (

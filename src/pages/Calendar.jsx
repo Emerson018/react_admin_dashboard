@@ -10,7 +10,7 @@ import { scheduleData } from '../data/dummy';
 const Calendar = () => {
   return (
     <div className='chart-layout dark:bg-secondary-dark-bg'>
-      <Header category='App' title='Calendar' />
+      <Header category='Calendar' />
       <ScheduleComponent
         height='650px'
         eventSettings={{ dataSource: scheduleData }}
