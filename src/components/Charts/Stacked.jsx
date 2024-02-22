@@ -8,7 +8,7 @@ const Stacked = ({ width, height }) => {
   const [stackedData, setStackedData] = useState([]);
   const { currentMode } = useStateContext();
 
-  const palette = ['#105b5e', '#868e5e'];
+  const palette = ['#37afa9', '#27647B'];
 
   useEffect(() => {
     const fetchData = async () => {

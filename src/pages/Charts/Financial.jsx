@@ -10,7 +10,7 @@ const Financial = () => {
   const [financialData, setFinancialData] = useState([]);
   const [financialData2, setFinancialData2] = useState([]);
   const [financialData3, setFinancialData3] = useState([]);
-  const palette = ['#E94649', '#F6B53F', '#6FAAB0', '#FF33F3', '#228B22', '#3399FF'];
+  const palette = ['#ca3542', '#27647b', '#849fad', '#aec0c9', '#57575f', '#37afa9'];
 
   useEffect(() => {
     const fetchData = async () => {

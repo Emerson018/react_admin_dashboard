@@ -17,7 +17,7 @@ import { useStateContext } from '../../ContextProvider';
 const Area = () => {
   const { currentMode } = useStateContext();
   const [areaData, setAreaData] = useState([]);
-  const palette = ['#E94649', '#F6B53F', '#6FAAB0', '#FF33F3', '#228B22', '#3399FF'];
+  const palette = ['#ca3542', '#27647b', '#849fad', '#aec0c9', '#57575f', '#37afa9'];
 
   useEffect(() => {
     const fetchData = async () => {
