@@ -7,6 +7,7 @@ import { useStateContext } from '../../ContextProvider';
 const Stacked = ({ width, height }) => {
   const [stackedData, setStackedData] = useState([]);
   const { currentMode } = useStateContext();
+  const [somaDados, SetSomaDados] = useState([]);
 
   const palette = ['#37afa9', '#27647B'];
 
@@ -14,8 +15,12 @@ const Stacked = ({ width, height }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://127.0.0.1:8000/loja1/');
+        const response2 = await axios.get('http://127.0.0.1:8000/soma-clientes/')
+
         setStackedData(response.data);
+        SetSomaDados(response2.data);
         console.log('Dados do banco de dados:', response.data);
+        console.log('Dados do banco de dados:', response2.data);
       } catch (error) {
         console.error('Erro ao obter dados do banco de dados:', error);
       }

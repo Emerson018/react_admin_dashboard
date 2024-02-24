@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from django.http import JsonResponse
+from rest_framework.response import Response
 from datetime import datetime
+from rest_framework.views import APIView
+
 
 from produtos.models import Produto, Loja1, Loja2, Loja3, Testes
 from produtos.serializer import ProdutoSerializer, Loja1Serializer, Loja2Serializer, Loja3Serializer, TestesSerializer
@@ -68,3 +71,16 @@ def save_product(request):
             return JsonResponse({'message': 'Produto salvo com sucesso!'})
     else:
         return JsonResponse({'message': 'Falha ao obter os dados da URL'})
+    
+class SomaClientesView(APIView):
+    def get(self, request):
+        dados = Loja1.objects.all()
+        dados_formatados = []
+        for dado in dados:
+            soma_clientes = dado.clientes_cpf + dado.clientes_cnpj
+            dados_formatado = {
+                'xValue' : soma_clientes,
+                
+            }
+            dados_formatados.append(dados_formatado)
+        return Response(dados_formatados)
