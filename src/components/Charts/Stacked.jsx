@@ -19,8 +19,8 @@ const Stacked = ({ width, height }) => {
 
         setStackedData(response.data);
         SetSomaDados(response2.data);
-        console.log('Dados do banco de dados:', response.data);
-        console.log('Dados do banco de dados:', response2.data);
+        console.log('Banco de dados:', response.data);
+        console.log('Dados do backend:', response2.data);
       } catch (error) {
         console.error('Erro ao obter dados do banco de dados:', error);
       }

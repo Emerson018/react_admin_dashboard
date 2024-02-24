@@ -45,11 +45,24 @@ class Loja1(models.Model):
     rendimento_mensal = models.FloatField(max_length=4, null=False, blank=False)
     clientes_cpf = models.IntegerField(null=False, blank=False)
     clientes_cnpj = models.IntegerField(null=False, blank=False)
-    clientes_total = models.IntegerField(null=False, blank=False)
+    clientes_total = models.IntegerField(null=False)
     maior_venda = models.FloatField(max_length=10, null=False, blank=False)
     menor_venda = models.FloatField(max_length=10, null=False, blank=False)
     tipo_produto = models.CharField(max_length=1, choices=TIPO_PRODUTO_CHOICES, null=False, blank=False)
     qtd_produtos = models.IntegerField(null=False, blank=False)
+
+    @classmethod
+    def calcular_soma_clientes(cls):
+        # Cálculo da soma dos clientes CPF e CNPJ
+        queryset = cls.objects.all()
+        total_clientes = queryset.aggregate(total=models.Sum(models.F('clientes_cpf') + models.F('clientes_cnpj')))
+        return total_clientes['total']
+
+    def save(self, *args, **kwargs):
+        # Antes de salvar, atualiza o campo clientes_total com a soma dos clientes CPF e CNPJ
+        self.clientes_total = self.clientes_cpf + self.clientes_cnpj
+        super().save(*args, **kwargs)
+    
 
 class Loja2(models.Model):
    
