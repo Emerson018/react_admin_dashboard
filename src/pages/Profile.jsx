@@ -11,17 +11,15 @@ const ProfilePage = () => {
         />
       </div>
       <div className="mt-6 text-center">
-        <h1 className="text-2xl md:text-4xl font-bold">John Doe</h1>
+        <h1 className="text-2xl md:text-4xl font-bold">Sayrix Viçosa</h1>
         <p className="text-gray-600 mt-2">Software Developer</p>
-        <p className="text-gray-600 mt-2">Location: New York, USA</p>
-        <p className="text-gray-600 mt-2">Email: john.doe@example.com</p>
+        <p className="text-gray-600 mt-2">Location: Porto Alegre, RS</p>
+        <p className="text-gray-600 mt-2">Email: sayrix.018@gmail.com</p>
       </div>
       <div className="mt-6">
         <h2 className="text-lg md:text-xl font-bold">Bio:</h2>
         <p className="text-gray-600 mt-2">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-          convallis libero et viverra lobortis. Proin euismod dui eu lacinia
-          tempor.
+          coé man
         </p>
       </div>
     </div>

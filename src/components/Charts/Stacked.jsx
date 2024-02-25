@@ -9,13 +9,13 @@ const Stacked = ({ width, height }) => {
   const { currentMode } = useStateContext();
   const [somaDados, SetSomaDados] = useState([]);
 
-  const palette = ['#37afa9', '#27647B'];
+  const palette = ['#ca3542', '#27647b', '#849fad', '#aec0c9', '#57575f', '#37afa9'];
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://127.0.0.1:8000/loja1/');
-        const response2 = await axios.get('http://127.0.0.1:8000/soma-clientes/')
+        const response2 = await axios.get('http://127.0.0.1:8000/soma-clientes/');
 
         setStackedData(response.data);
         SetSomaDados(response2.data);
@@ -45,7 +45,8 @@ const Stacked = ({ width, height }) => {
             background: currentMode === 'Dark' ? '#33373E' : '#fff',
             textStyle: { color: currentMode === 'Dark' ? '#fff' : '#333' }
           }}
-          palettes={palette}
+          
+
         >
           <Inject services={[StackingColumnSeries, Legend, Tooltip, Category]} />
           <SeriesCollectionDirective>
@@ -60,6 +61,7 @@ const Stacked = ({ width, height }) => {
                 marker={series.marker}
                 width={2}
                 animation={{ enable: true }}
+                
               />
             ))}
           </SeriesCollectionDirective>

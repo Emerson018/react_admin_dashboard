@@ -227,3 +227,16 @@ body {
     background-color: white;
     border-radius: 2rem;
 }
+
+/* APP BUTTON */
+
+.text-settings {
+    font-size: 1rem; /* text-3x1 */
+    padding: 1rem; /* p-3 (considerando que 1 unidade seja equivalente a 0.5rem) */
+}
+
+.text-settings p-3:hover {
+    filter: drop-shadow(1px 1px 1px black); /* hover:drop-shadow-x1 */
+    background-color: #f2f2f2; /* hover:bg-light-gray */
+    color: white; /* text-white */
+}

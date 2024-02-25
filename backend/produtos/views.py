@@ -84,3 +84,4 @@ class SomaClientesView(APIView):
             }
             dados_formatados.append(dados_formatado)
         return Response(dados_formatados)
+    

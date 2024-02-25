@@ -15,10 +15,14 @@ const LineChart = () => {
         const response2 = await axios.get('http://127.0.0.1:8000/loja2/');
         const response3 = await axios.get('http://127.0.0.1:8000/loja3/');
         const palette = ['#ca3542', '#27647b', '#849fad', '#aec0c9', '#57575f', '#37afa9'];
-        // Substitua 'sua-api-endpoint-aqui' pelo endpoint correto da sua API
-        setChartData(response.data);
-        setChartData2(response2.data);
-        setChartData3(response3.data);
+
+        const sortByDate = (data) => {
+          return data.sort((a, b) => new Date(a.data) - new Date(b.data))
+        };
+
+        setChartData(sortByDate(response.data));
+        setChartData2(sortByDate(response2.data));
+        setChartData3(sortByDate(response3.data));
         console.log('Dados do banco de dados:', response.data);
       } catch (error) {
         console.error('Erro ao obter dados do banco de dados:', error);

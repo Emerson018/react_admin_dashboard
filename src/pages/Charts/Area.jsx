@@ -49,6 +49,7 @@ const Area = () => {
           id="charts"
           primaryXAxis={areaPrimaryXAxis}
           primaryYAxis={areaPrimaryYAxis}
+          tooltip={{ enable: true}}
           chartArea={{ border: { width: 0 } }}
           background={currentMode === 'Dark' ? '#33373E' : '#fff'}
           palettes={palette}
