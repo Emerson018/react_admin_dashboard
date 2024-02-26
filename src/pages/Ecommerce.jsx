@@ -15,6 +15,8 @@
     const [totalCustomers, setTotalCustomers] = useState(0);
     const [earningDataWithBackend, setEarningDataWithBackend] = useState([]);
     const [maxEarning, setMaxEarning] = useState(0);
+    const [maiorVenda, setMaiorVenda] = useState(0);
+    const [rendimentoTotal, setRendimentoTotal] = useState(0);
 
     const fetchData = async (url) => {
       try {
@@ -22,8 +24,6 @@
         const totalEarnings = response.data.reduce((acc, curr) => acc + curr.rendimento_mensal, 0);
         const totalLosses = response.data.reduce((acc, curr) => acc + curr.menor_venda, 0);
         const totalCustomers = response.data.reduce((acc, curr) => acc + curr.clientes_total, 0)
-        const maxEarning = Math.max(...response.data.map(item => item.maior_venda, 0)); // nao  ta funcionando
-        setMaxEarning(maxEarning)
         return { totalEarnings, totalLosses, totalCustomers };
       } catch (error) {
         console.error('Erro ao obter dados do backend:', error);
@@ -49,7 +49,9 @@
 
     const fetchStoreData = async (storeUrl, title, icon, iconColor, iconBg, pcColor) => {
       const { totalEarnings, totalLosses, totalCustomers } = await fetchData(storeUrl);
+      console.log('tipo do banco:', typeof totalEarnings);
       return createData(icon, totalEarnings, totalLosses, title, iconColor, iconBg, pcColor, totalCustomers);
+      
     };
 
     useEffect(() => {
@@ -69,12 +71,20 @@
         <FiBarChart />,
         'rgb(228, 106, 118)', 'rgb(255, 244, 229)', 'red-600');
 
+        const maiorVenda = await axios.get('http://127.0.0.1:8000/maior-valor/');
+        setMaiorVenda(maiorVenda.data.maior_valor_venda);
+
+        const rendimentoTotal = await axios.get('http://127.0.0.1:8000/rendimento/');
+        setRendimentoTotal(rendimentoTotal.data.soma_rendimento_total);
+        
+
+
         const combinedData = [loja1Data, loja2Data, loja3Data];
         setTotalEarnings(combinedData.reduce((acc, curr) => acc + curr.amount, 0));
         setTotalLosses(combinedData.reduce((acc, curr) => acc + curr.losses, 0));
         setEarningDataWithBackend(combinedData);
         setTotalCustomers(combinedData.reduce((acc, curr) => acc + curr.totalCustomers, 0))
-        console.log('BANCO DE DADOS:', combinedData);
+        console.log('DADOS BACKEND MAIOR VENDA:', maiorVenda.data, typeof maiorVenda.data);
       };
       fetchDataForAllStores();
     }, []);
@@ -139,7 +149,7 @@
                 </div>
                 <div className='mt-8'>
                   <p>
-                    <span className='text-3xl font-semibold'>R$ {formatCurrency(maxEarning)}</span>
+                    <span className='text-3xl font-semibold'>R$ {maiorVenda}</span>
                   </p>
                   <p className='text-gray-500'>Maior Venda</p>
                 </div>

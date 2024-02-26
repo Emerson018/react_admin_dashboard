@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from django.http import JsonResponse
 from rest_framework.response import Response
 from datetime import datetime
 from rest_framework.views import APIView
+from django.db.models import Sum, Max
 
 
 from produtos.models import Produto, Loja1, Loja2, Loja3, Testes
@@ -74,14 +75,61 @@ def save_product(request):
     
 class SomaClientesView(APIView):
     def get(self, request):
+        dados_formatados = self.calcular_soma_clientes()
+        return Response(dados_formatados)
+    
+    def calcular_soma_clientes(self):
         dados = Loja1.objects.all()
         dados_formatados = []
+
         for dado in dados:
             soma_clientes = dado.clientes_cpf + dado.clientes_cnpj
             dados_formatado = {
-                'xValue' : soma_clientes,
-                
+                'xValue': soma_clientes,
             }
             dados_formatados.append(dados_formatado)
-        return Response(dados_formatados)
+
+        return dados_formatados
+
+class MaiorValorDeVendaView(APIView):
+    def get(self, request):
+        maior_valor = self.calcular_maior_valor()
+        
+        if maior_valor is not None:
+            return Response({'maior_valor_venda': maior_valor})
+        else:
+            return Response({'message': 'Não há dados disponíveis.'}, status=status.HTTP_404_NOT_FOUND)
+
+    def calcular_maior_valor(self):
+        maiores_vendas = []
+        lojas = [Loja1, Loja2, Loja3]  # Adicione outras lojas conforme necessário
+
+        for valor in lojas:
+            dados = valor.objects.aggregate(max_venda=Max('maior_venda'))
+            max_venda = dados.get('max_venda')
+            if max_venda is not None:
+                maiores_vendas.append(max_venda)
+
+        if maiores_vendas:
+            return max(maiores_vendas)
+        else:
+            return None
+        
+class SomaRendimentoTotalView(APIView):
+    def get(self, request):
+        soma_rendimento_total = self.calcular_soma_rendimento_total()
+        return Response({'soma_rendimento_total': soma_rendimento_total})
     
+    def calcular_soma_rendimento_total(self):
+        soma_total = 0
+        lojas = [Loja1, Loja2, Loja3]  # Adicione outras lojas conforme necessário
+
+        for loja_cls in lojas:
+            dados = loja_cls.objects.aggregate(soma_rendimento=Sum('rendimento_total'))
+            soma_rendimento = dados.get('soma_rendimento')
+            if soma_rendimento is not None:
+                soma_total += soma_rendimento
+
+        return soma_total
+
+
