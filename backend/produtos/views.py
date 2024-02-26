@@ -75,21 +75,20 @@ def save_product(request):
     
 class SomaClientesView(APIView):
     def get(self, request):
-        dados_formatados = self.calcular_soma_clientes()
-        return Response(dados_formatados)
+        total_clientes = self.calcular_soma_clientes()
+        return Response({'total_clientes': total_clientes})
     
     def calcular_soma_clientes(self):
-        dados = Loja1.objects.all()
-        dados_formatados = []
+        total_clientes = 0
+        lojas = [Loja1, Loja2, Loja3]
 
-        for dado in dados:
-            soma_clientes = dado.clientes_cpf + dado.clientes_cnpj
-            dados_formatado = {
-                'xValue': soma_clientes,
-            }
-            dados_formatados.append(dados_formatado)
+        for loja in lojas:
+            dados = loja.objects.aggregate(soma_clientes=Sum('clientes_total'))
+            soma_clientes = dados.get('soma_clientes')
+            if soma_clientes is not None:
+                total_clientes += soma_clientes
 
-        return dados_formatados
+        return total_clientes
 
 class MaiorValorDeVendaView(APIView):
     def get(self, request):
@@ -125,11 +124,9 @@ class SomaRendimentoTotalView(APIView):
         lojas = [Loja1, Loja2, Loja3]  # Adicione outras lojas conforme necessário
 
         for loja_cls in lojas:
-            dados = loja_cls.objects.aggregate(soma_rendimento=Sum('rendimento_total'))
+            dados = loja_cls.objects.aggregate(soma_rendimento=Sum('rendimento_mensal'))
             soma_rendimento = dados.get('soma_rendimento')
             if soma_rendimento is not None:
                 soma_total += soma_rendimento
 
         return soma_total
-
-
