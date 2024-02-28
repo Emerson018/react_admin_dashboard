@@ -186,7 +186,7 @@ const Ecommerce = () => {
       <div className='container-revenue'>
         <div className='container-revenue-layout dark:text-gray-200 dark:bg-secondary-dark-bg'>
           <div className='container-revenue-top-left'>
-            <p className='container-revenue-title'>Atualizações da receita</p>
+            <p className='container-revenue-title'>Atualizações das lojas</p>
               <div className='container-revenue-text'>
                 <p className='container-revenue-text
                   text-gray-600

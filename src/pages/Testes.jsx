@@ -9,8 +9,8 @@ import { useStateContext } from '../ContextProvider';
 const Testes = () => {
   const [data, setData] = useState([]);
   const [searchText, setSearchText] = useState('');
-  const { currentMode } = useStateContext();
-
+  const { currentColor } = useStateContext();
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,7 +43,7 @@ const Testes = () => {
   return (
     <div className="chart-layout dark:bg-secondary-dark-bg">
       <ChartsHeader category="Testes" />
-      <div className="mt-24 p-10 bg-white rounded-3xl text-xl mb-2 mt-3">
+      <div className="search_test_box">
         <div className="mb-4">
           <input
             type="text"
@@ -51,7 +51,9 @@ const Testes = () => {
             onChange={handleSearchTextChange}
             placeholder="Digite para pesquisar..."
           />
-          <button onClick={handleSearchButtonClick}>Pesquisar</button>
+          <div className='center-button'>
+            <button onClick={handleSearchButtonClick} > Salvar produto</button>
+          </div>
         </div>
       </div>
       <ChartsHeader category="Lista" />
@@ -63,13 +65,17 @@ const Testes = () => {
         editSettings={{ allowDeleting: true, allowEditing: true }}
         width="auto"
         searchSettings={{ fields: ['Name'] }}
+        className='layout_charts'
+        bgColor={currentColor}
         
       >
         <ColumnsDirective>
+      
           {CustomGrid2.map((item) => (
             <ColumnDirective
               key={item.field}
               {...item}
+              
             />
           ))}
         </ColumnsDirective>

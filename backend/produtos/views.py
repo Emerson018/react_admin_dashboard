@@ -130,3 +130,4 @@ class SomaRendimentoTotalView(APIView):
                 soma_total += soma_rendimento
 
         return soma_total
+    

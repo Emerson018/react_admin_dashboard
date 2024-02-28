@@ -8,13 +8,15 @@ const LineChart = () => {
   const [chartData, setChartData] = useState([]);
   const [chartData2, setChartData2] = useState([]);
   const [chartData3, setChartData3] = useState([]);
+  const palette = ['#ca3542', '#27647b', '#849fad', '#aec0c9', '#57575f', '#37afa9'];
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://127.0.0.1:8000/loja1/');
         const response2 = await axios.get('http://127.0.0.1:8000/loja2/');
         const response3 = await axios.get('http://127.0.0.1:8000/loja3/');
-        const palette = ['#ca3542', '#27647b', '#849fad', '#aec0c9', '#57575f', '#37afa9'];
+        
 
         const sortByDate = (data) => {
           return data.sort((a, b) => new Date(a.data) - new Date(b.data))
@@ -41,15 +43,19 @@ const LineChart = () => {
       primaryYAxis={LinePrimaryYAxis} // Adapte conforme necessário
       chartArea={{ border: { width: 0 } }}
       tooltip={{ enable: true }}
+      palettes={palette}
       background={currentMode === 'Dark' ? '#33373E' : '#fff'}
       legendSettings={{ background: currentMode === 'Dark' ? '#33373E' : '#fff', textStyle: { color: currentMode === 'Dark' ? '#fff' : '#333' } }}
 
     >
       <Inject services={[LineSeries, DateTime, Legend, Tooltip]} />
       <SeriesCollectionDirective>
-        <SeriesDirective dataSource={chartData} xName='data' yName="porc_variacao_anual" type="Line" name='Loja 1' />
-        <SeriesDirective dataSource={chartData2} xName='data' yName="porc_variacao_anual" type="Line" name='Loja 2' />
-        <SeriesDirective dataSource={chartData3} xName='data' yName="porc_variacao_anual" type="Line" name='Loja 3'  />
+        <SeriesDirective dataSource={chartData} xName='data' yName="porc_variacao_anual" type="Line" name='Loja 1' marker={{ visible: true,
+                tooltip: true}} />
+        <SeriesDirective dataSource={chartData2} xName='data' yName="porc_variacao_anual" type="Line" name='Loja 2' marker={{ visible: true,
+                tooltip: true}} />
+        <SeriesDirective dataSource={chartData3} xName='data' yName="porc_variacao_anual" type="Line" name='Loja 3' marker={{ visible: true,
+                tooltip: true}} />
       </SeriesCollectionDirective>
     </ChartComponent>
     )}
