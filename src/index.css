@@ -28,11 +28,14 @@ body {
         margin-top: 2.5rem;
     }
 }
+.chart-layout:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* adiciona uma sombra sutil ao passar o mouse, equivalente a hover:drop-shadow-x1 */
+}
   
 /* Ecommerce */
 
 .body-budget-card {
-    background-color: white;
+    background-color: #d7d7d756;
     color: black;
     height: 11rem; 
     border-radius: 2rem;
@@ -43,6 +46,10 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+}
+
+.body-budget-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* adiciona uma sombra sutil ao passar o mouse, equivalente a hover:drop-shadow-x1 */
 }
 
 @media (min-width: 768px) {
@@ -75,12 +82,14 @@ body {
     font-size: 1.3rem;
 }
 
+
 .total-budget {
     font-size: 1.3rem;
     font-weight: bold;
     text-align: center;
 
 }
+
 
 .store-elements {
     display: flex;
@@ -92,12 +101,18 @@ body {
 }
 
 
+
 .store-layout {
+    background-color: #d7d7d756;
     width: 14rem; /* equivalente a md:w-56 */
     padding: 1rem; /* equivalente a p-4 */
     padding-top: 2.25rem; /* equivalente a pt-9 */
     border-radius: 1rem; /* equivalente a rounded-2xl */
     margin-right: 0.2rem;
+}
+
+.store-layout:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* adiciona uma sombra sutil ao passar o mouse, equivalente a hover:drop-shadow-x1 */
 }
 
 .store-scale {
@@ -121,7 +136,7 @@ body {
     font-size: 1.5rem; /* equivalente a text-2xl */
     opacity: 0.9; /* equivalente a opacity-0.9 */
     border-radius: 9999px; /* para criar um círculo, equivalente a rounded-full */
-    padding: 1rem; /* equivalente a p-4 */
+    padding: 1.2rem; /* equivalente a p-4 */
     transition: box-shadow 0.3s ease; /* transição para o efeito hover */
 }
 
@@ -157,6 +172,7 @@ body {
 }
 
 .container-revenue-layout {
+    background-color: #d7d7d756;
     margin: 0.75rem; /* equivalente a m-3 */
     padding: 1rem; /* equivalente a p-4 */
     border-radius: 0.5rem; /* equivalente a rounded-2x1 */
@@ -166,10 +182,15 @@ body {
     border-radius: 1rem; /* rounded-2xl */
 }
 
+.container-revenue-layout:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* adiciona uma sombra sutil ao passar o mouse, equivalente a hover:drop-shadow-x1 */
+}
+
 .container-revenue-top-left {
     display: flex; /* Define o contêiner como flexível */
     justify-content: space-between; /* Distribui os itens uniformemente ao longo do eixo principal */
 }
+
 
 .container-revenue-title {
     font-weight: 600; /* Equivalente a font-semibold */
@@ -216,16 +237,16 @@ body {
     padding: 0.375rem; /* Equivalente a p-1.5 */
     cursor: pointer; /* Equivalente a cursor-pointer */
     border-radius: 9999px; /* Para criar um círculo, equivalente a rounded-full */
-    color: #ffffff; /* Equivalente a text-white */
+    color: #000000; /* Equivalente a text-white */
     background-color: #48bb78; /* Equivalente a bg-green-400 */
     font-size: 0.75rem; /* Equivalente a text-xs */
     margin-left: 0.75rem; /* Equivalente a ml-3 */
 }
 
 .color-picker-bg {
-    margin: 1rem;
     background-color: white;
     border-radius: 2rem;
+    margin: 2rem 35rem;
 }
 
 /* APP BUTTON */
