@@ -20,6 +20,10 @@ import product5 from './product5.jpg';
 import product6 from './product6.jpg';
 import product7 from './product7.jpg';
 
+export const paletteColors =[
+  '#0b1d78', '#ffa600', '#58508d','#57575f', '#37afa9'
+];
+
 export const gridOrderImage = (props) => (
   <div>
     <img
@@ -138,7 +142,6 @@ export const  barPrimaryXAxis = {
   majorGridLines: { width: 0 },
 };
 export const barPrimaryYAxis = {
-  title: 'Produtos Vendidos / Loja',
   majorGridLines: { width: 1 },
   majorTickLines: { width: 0 },
   lineStyle: { width: 0 },
@@ -207,7 +210,6 @@ export const FinancialPrimaryXAxis = {
 };
 
 export const FinancialPrimaryYAxis = {
-  title: 'Vendas máx. e min. Loja',
   minimum: 0,
   maximum: 7000,
   interval: 500,

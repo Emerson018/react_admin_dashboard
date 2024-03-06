@@ -27,7 +27,7 @@ const Pyramid = () => {
     <>
       {pyramidData.length > 0 && (
         <div className={`chart-layout ${currentMode === 'Dark' ? 'dark:bg-secondary-dark-bg' : ''}`}>
-          <ChartsHeader category="Pyramid" title="Food Comparison Chart" />
+          <ChartsHeader category="Pyramid" title="Tipos de produtos da Loja 1" />
           <div className="w-full">
             <AccumulationChartComponent
               id="pyramid-chart"

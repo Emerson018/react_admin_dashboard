@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, Legend, Category, Tooltip, ColumnSeries, DataLabel } from '@syncfusion/ej2-react-charts';
 import axios from 'axios';
-import { barPrimaryXAxis, barPrimaryYAxis } from '../../data/dummy';
+import { barPrimaryXAxis, barPrimaryYAxis, paletteColors } from '../../data/dummy';
 import { ChartsHeader } from '../../components/Charts';
 import { useStateContext } from '../../ContextProvider';
 const Bar = () => {
@@ -9,7 +9,6 @@ const Bar = () => {
   const [barData, setBarData] = useState([]);
   const [barData2, setBar2Data] = useState([]);
   const [barData3, setBar3Data] = useState([]);
-  const palette = ['#ca3542', '#27647b', '#849fad', '#aec0c9', '#57575f', '#37afa9'];
   
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +31,7 @@ const Bar = () => {
     <>
       {isDataReady && (
     <div className="chart-layout dark:bg-secondary-dark-bg">
-      <ChartsHeader category="Bar" title="Contagem de Medalhas Olímpicas - RIO" />
+      <ChartsHeader category="Bar" title="TIPO DE PRODUTO / LOJA" />
       <div className=" w-full">
         <ChartComponent
           id="charts"
@@ -41,7 +40,7 @@ const Bar = () => {
           chartArea={{ border: { width: 0 } }}
           tooltip={{ enable: true }}
           background={currentMode === 'Dark' ? '#33373E' : '#fff'}
-          palettes={palette}
+          palettes={paletteColors}
           legendSettings={{ background: currentMode === 'Dark' ? '#33373E' : '#fff', textStyle: { color: currentMode === 'Dark' ? '#fff' : '#333' } }}
         >
           <Inject services={[ColumnSeries, Legend, Tooltip, Category, DataLabel]} />

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, LineSeries, DateTime, Legend, Tooltip } from '@syncfusion/ej2-react-charts';
 import axios from 'axios';
-import { LinePrimaryXAxis, LinePrimaryYAxis } from '../../data/dummy'; // Importe as configurações do eixo principal, se necessário
+import { LinePrimaryXAxis, LinePrimaryYAxis, paletteColors } from '../../data/dummy';
 import { useStateContext } from '../../ContextProvider';
 const LineChart = () => {
   const { currentMode } = useStateContext();
   const [chartData, setChartData] = useState([]);
   const [chartData2, setChartData2] = useState([]);
   const [chartData3, setChartData3] = useState([]);
-  const palette = ['#ca3542', '#27647b', '#849fad', '#aec0c9', '#57575f', '#37afa9'];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,7 +42,7 @@ const LineChart = () => {
       primaryYAxis={LinePrimaryYAxis} // Adapte conforme necessário
       chartArea={{ border: { width: 0 } }}
       tooltip={{ enable: true }}
-      palettes={palette}
+      palettes={paletteColors}
       background={currentMode === 'Dark' ? '#33373E' : '#fff'}
       legendSettings={{ background: currentMode === 'Dark' ? '#33373E' : '#fff', textStyle: { color: currentMode === 'Dark' ? '#fff' : '#333' } }}
 

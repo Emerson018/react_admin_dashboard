@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, DateTime, SplineAreaSeries, Legend, Tooltip } from '@syncfusion/ej2-react-charts';
 import { ChartsHeader } from '../../components/Charts';
-import { areaPrimaryXAxis, areaPrimaryYAxis } from '../../data/dummy';
+import { areaPrimaryXAxis, areaPrimaryYAxis, paletteColors } from '../../data/dummy';
 import { useStateContext } from '../../ContextProvider';
 import { Palette } from '@syncfusion/ej2/diagrams';
 const Area = () => {
@@ -10,7 +10,6 @@ const Area = () => {
   const [areaData, setAreaData] = useState([]);
   const [areaData2, setAreaData2] = useState([]);
   const [areaData3, setAreaData3] = useState([]);
-  const palette = ['#ca3542', '#27647b', '#849fad', '#aec0c9', '#57575f', '#37afa9'];
   
   useEffect(() => {
     const fetchData = async () => {
@@ -43,7 +42,7 @@ const Area = () => {
     <>
       {isDataReady && (
     <div className="chart-layout dark:bg-secondary-dark-bg">
-      <ChartsHeader category="Area" title="Inflation" />
+      <ChartsHeader category="Area" title="CRESCIMENTO ANUAL / LOJA" />
       <div className="w-full">
         <ChartComponent
           id="charts"
@@ -52,7 +51,7 @@ const Area = () => {
           tooltip={{ enable: true}}
           chartArea={{ border: { width: 0 } }}
           background={currentMode === 'Dark' ? '#33373E' : '#fff'}
-          palettes={palette}
+          palettes={paletteColors}
           legendSettings={{ background: currentMode === 'Dark' ? '#33373E' : '#fff', textStyle: { color: currentMode === 'Dark' ? '#fff' : '#333' } }}
         >
           <Inject services={[SplineAreaSeries, DateTime, Legend, Tooltip]} />

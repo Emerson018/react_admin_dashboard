@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, Legend, Category, StackingColumnSeries, Tooltip } from '@syncfusion/ej2-react-charts';
-import { stackedCustomSeries, stackedPrimaryXAxis, stackedPrimaryYAxis } from '../../data/dummy';
+import { stackedCustomSeries, stackedPrimaryXAxis, stackedPrimaryYAxis, paletteColors } from '../../data/dummy';
 import { useStateContext } from '../../ContextProvider';
 
 const Stacked = ({ width, height }) => {
@@ -9,7 +9,6 @@ const Stacked = ({ width, height }) => {
   const { currentMode } = useStateContext();
   const [somaDados, SetSomaDados] = useState([]);
 
-  const palette = ['#ca3542', '#27647b', '#849fad', '#aec0c9', '#57575f', '#37afa9'];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,6 +35,7 @@ const Stacked = ({ width, height }) => {
           width={width}
           height={height}
           id='charts'
+          palettes={paletteColors}
           primaryXAxis={stackedPrimaryXAxis}
           primaryYAxis={stackedPrimaryYAxis}
           chartArea={{ border: { width: 0 } }}

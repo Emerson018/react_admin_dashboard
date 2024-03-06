@@ -24,7 +24,7 @@ const Line = () => {
 
   return (
     <div className="chart-layout dark:bg-secondary-dark-bg">
-      <ChartsHeader category="Line" title="inflation Rate" />
+      <ChartsHeader category="Line" title="CRESCIMENTO ANUAL / LOJA" />
       <div className="w-full">
         <LineChart data={chartData} />
       </div>

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { GridComponent, ColumnsDirective, ColumnDirective, Page, Selection, Inject, Edit, Toolbar, Sort, Filter, SearchSettings } from '@syncfusion/ej2-react-grids';
+import { GridComponent, ColumnsDirective, ColumnDirective, Page, Selection, Inject, Edit, Toolbar, Sort, Filter, Search } from '@syncfusion/ej2-react-grids';
 import { CustomGrid2 } from '../data/dummy';
-import Header from '../components/Header';
 import { ChartsHeader } from '../components/Charts';
 import { useStateContext } from '../ContextProvider';
 
@@ -10,6 +9,13 @@ const Testes = () => {
   const [data, setData] = useState([]);
   const [searchText, setSearchText] = useState('');
   const { currentColor } = useStateContext();
+
+  const toolbarOptions = ['Search'];
+  const searchOptions = {
+      fields: ['titulo', 'lm'],
+      ignoreCase: true,
+      operator: 'contains'
+  };
   
   useEffect(() => {
     const fetchData = async () => {
@@ -42,7 +48,7 @@ const Testes = () => {
 
   return (
     <div className="chart-layout dark:bg-secondary-dark-bg">
-      <ChartsHeader category="Testes" />
+      <ChartsHeader category="Adicionar Produto" />
       <div className="search_test_box">
         <div className="mb-4">
           <input
@@ -56,15 +62,16 @@ const Testes = () => {
           </div>
         </div>
       </div>
-      <ChartsHeader category="Lista" />
+      <ChartsHeader category="Produtos" />
       <GridComponent
+        
         dataSource={data}
         allowPaging
         allowSorting
-        toolbar={['Delete']}
+        toolbar={toolbarOptions}
         editSettings={{ allowDeleting: true, allowEditing: true }}
         width="auto"
-        searchSettings={{ fields: ['Name'] }}
+        searchSettings={searchOptions}
         className='layout_charts'
         bgColor={currentColor}
         
@@ -79,7 +86,7 @@ const Testes = () => {
             />
           ))}
         </ColumnsDirective>
-        <Inject services={[Page, Toolbar, Selection, Edit, Sort, Filter]} />
+        <Inject services={[Page, Toolbar, Selection, Edit, Sort, Filter, Search]} />
       </GridComponent>
     </div>
   );

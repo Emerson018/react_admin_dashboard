@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, HiloSeries, Tooltip, DateTime, Zoom, Logarithmic, Crosshair, Legend } from '@syncfusion/ej2-react-charts';
-import { FinancialPrimaryXAxis, FinancialPrimaryYAxis } from '../../data/dummy';
+import { FinancialPrimaryXAxis, FinancialPrimaryYAxis, paletteColors } from '../../data/dummy';
 import { useStateContext } from '../../ContextProvider';
 import { ChartsHeader } from '../../components/Charts';
 
@@ -10,7 +10,7 @@ const Financial = () => {
   const [financialData, setFinancialData] = useState([]);
   const [financialData2, setFinancialData2] = useState([]);
   const [financialData3, setFinancialData3] = useState([]);
-  const palette = ['#ca3542', '#27647b', '#849fad', '#aec0c9', '#57575f', '#37afa9'];
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +36,7 @@ const Financial = () => {
     <>
       {isDataReady && (
         <div className={`chart-layout ${currentMode === 'Dark' ? 'dark:bg-secondary-dark-bg' : ''}`}>
-          <ChartsHeader category="Financial" title="Financial graph" />
+          <ChartsHeader category="Financial" title="MAIOR E MENOR VENDA / LOJA" />
           <div className="w-full">
             <ChartComponent
               id="charts"
@@ -46,7 +46,7 @@ const Financial = () => {
               tooltip={{ enable: true, shared: true }}
               crosshair={{ enable: true, lineType: 'Vertical', line: { width: 0 } }}
               background={currentMode === 'Dark' ? '#33373E' : '#fff'}
-              palettes={palette}
+              palettes={paletteColors}
               legendSettings={{ background: currentMode === 'Dark' ? '#33373E' : '#fff', textStyle: { color: currentMode === 'Dark' ? '#fff' : '#333' } }}
             >
               <Inject services={[HiloSeries, Tooltip, DateTime, Logarithmic, Crosshair, Zoom, Legend]} />
